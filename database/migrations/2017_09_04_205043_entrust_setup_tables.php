@@ -50,8 +50,7 @@ class EntrustSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
-            $table->string('category')->nullable();
-            $table->integer('permission_category_id')->unsigned()->nullable();
+            $table->integer('permission_category_id')->unsigned();
             $table->foreign('permission_category_id')->references('id')->on('permission_categories')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

@@ -133,6 +133,7 @@ class PermissionsTableSeeder extends Seeder
 
         foreach($permissions as $permission) {
             $category = PermissionCategory::all()->where('name', $permission['category'])->first();
+            unset($permission['category']);
             $perm = new Permission($permission);
             $category->permissions()->save($perm);
         }
