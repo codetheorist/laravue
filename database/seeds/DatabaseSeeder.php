@@ -28,5 +28,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->command->info('Default Users added.');
+
+        $this->call(PermissionCategoriesTableSeeder::class);
+        $this->command->info('Default permission categories added.');
+
+        $this->call(PermissionsTableSeeder::class);
+        $this->command->info('Default permissions added.');
+
     }
 }

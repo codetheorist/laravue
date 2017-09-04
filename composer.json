@@ -15,7 +15,7 @@
         "oriceon/laravel-settings": "^1.1",
         "spatie/laravel-newsletter": "^3.7",
         "tymon/jwt-auth": "^0.5.9",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "^1.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
