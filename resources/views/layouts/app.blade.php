@@ -11,8 +11,7 @@
     <title>{{ config('app.name', 'Takeaway Town') }}</title>
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/ionicons.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}" rel="stylesheet">
     <script>
         window.Laravel = {!! json_encode([
             'authUser' => Auth::user(),
@@ -22,7 +21,7 @@
         ]) !!}
     </script>
 </head>
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">

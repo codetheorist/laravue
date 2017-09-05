@@ -25,5 +25,7 @@ Route::post('register', 'Auth\RegisterController@create');
 
 Route::group(['middleware' => 'jwt.auth'], function()
 {
+    Route::get('/permissions', 'PermissionController@index');
     Route::get('user', 'UserController@show');
+    Route::get('users', 'UserController@index');
 });

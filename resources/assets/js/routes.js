@@ -7,7 +7,9 @@ Vue.use(VueRouter);
 const Welcome = () => import('./components/Welcome.vue')
 const Login = () => import('./components/Login.vue')
 const Profile = () => import('./components/Profile.vue')
+const UserList = () => import('./components/UserList.vue')
 const Register = () => import('./components/Register.vue')
+const Permissions = () => import('./components/Permissions.vue')
 const AdminWrapper = () => import('./components/admin-wrapper/AdminWrapper.vue')
 const FrontendWrapper = () => import('./components/frontend-wrapper/FrontendWrapper.vue')
 
@@ -69,13 +71,33 @@ const router = new VueRouter({
             ]
         },
         {
-            path: '/profile',
+            path: '/admin',
             component: AdminWrapper,
             children: [
                 {
                     path: '',
+                    name: 'dashboard',
+                    component: Profile
+                },
+                {
+                    path: 'profile',
                     name: 'profile',
                     component: Profile
+                },
+                {
+                    path: 'user-list',
+                    name: 'user-list',
+                    component: UserList
+                },
+                {
+                    path: 'roles',
+                    name: 'roles',
+                    component: Permissions
+                },
+                {
+                    path: 'permissions',
+                    name: 'permissions',
+                    component: Permissions
                 }
 
             ]

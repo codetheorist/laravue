@@ -1,6 +1,4 @@
-import $ from 'jquery';
 import slick from 'slick-carousel';
-import _ from 'lodash';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
@@ -12,8 +10,20 @@ import store from './store/index';
 import App from './components/App.vue';
 import jwtToken from './helpers/jwt-token';
 import VueNumeric from 'vue-numeric'
+import infiniteScroll from 'vue-infinite-scroll'
+
+try {
+  window.$ = window.jQuery = require('jquery');
+
+  require('bootstrap-sass');
+} catch (e) {}
+
+require('admin-lte')
+window.toastr = require('toastr')
+require('icheck')
+
 window._ = require('lodash');
-window.$ = window.jQuery = require('jquery');
+
 window.axios = axios;
 window.slick = slick;
 require('bootstrap-sass');
@@ -25,8 +35,13 @@ sync(store, router)
 window.Vue = require('vue');
 //Vue.component('example', require('./components/Example.vue'));
 // sync(store, router)
-
+// var $ = require('jQuery');
 Vue.use(trumbowyg);
+// Use trans function in Vue (equivalent to trans() Laravel Translations helper). See htmlheader.balde.php partial.
+Vue.prototype.trans = (key) => {
+  return _.get(window.trans, key, key)
+}
+Vue.use(infiniteScroll)
 
 Vue.use(VueNumeric)
 axios.interceptors.request.use(config => {

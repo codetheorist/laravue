@@ -11,14 +11,6 @@
         name: 'app',
         mounted() {
             this.$store.dispatch('setAuthUser');
-        },
-        methods: {
-          showTopBar() {
-            return this.$route.name !== 'home'
-          },
-          showNav() {
-            return
-          }
         }
     }
 </script>

@@ -22,6 +22,14 @@
       TopBar,
       MiniTopBar,
       Notification
+    },
+    methods: {
+      showTopBar() {
+        return this.$route.name !== 'home'
+      },
+      showNav() {
+        return
+      }
     }
   }
 </script>

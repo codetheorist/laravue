@@ -36,7 +36,7 @@
                       <a href="#">
                         <div class="pull-left">
                           <!-- User Image -->
-                          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                          <img src="/images/default.png" class="img-circle" alt="User Image">
                         </div>
                         <!-- Message title and timestamp -->
                         <h4>
@@ -121,14 +121,14 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="/images/default.png" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">{{ user.first_name }} {{ user.last_name }}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="/images/default.png" class="img-circle" alt="User Image">
 
                   <p>
                     {{ user.first_name }} {{ user.last_name }} - Web Developer
@@ -169,82 +169,15 @@
         </div>
       </nav>
     </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
 
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <p>Alexander Pierce</p>
-            <!-- Status -->
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          </div>
-        </div>
-
-        <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
-          <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Search...">
-            <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-          </div>
-        </form>
-        <!-- /.search form -->
-
-        <!-- Sidebar Menu -->
-        <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">HEADER</li>
-          <!-- Optionally, you can add icons to the links -->
-          <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-          <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-          <li class="treeview">
-            <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-              <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#">Link in level 2</a></li>
-              <li><a href="#">Link in level 2</a></li>
-            </ul>
-          </li>
-        </ul>
-        <!-- /.sidebar-menu -->
-      </section>
-      <!-- /.sidebar -->
-    </aside>
-
+    <main-sidebar></main-sidebar>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          Page Header
-          <small>Optional description</small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-          <li class="active">Here</li>
-        </ol>
-      </section>
+      <notification></notification>
 
-      <!-- Main content -->
-      <section class="content container-fluid">
-
-        <transition name="fade" mode="out-in">
-            <router-view></router-view>
-        </transition>
-
-      </section>
-      <!-- /.content -->
+      <transition name="fade" mode="out-in">
+          <router-view></router-view>
+      </transition>
     </div>
     <!-- /.content-wrapper -->
 
@@ -338,21 +271,41 @@
 
 </template>
 <script>
+  import $ from 'jquery';
   import { mapState } from 'vuex';
-  require('admin-lte');
+  import Notification from './../Notification.vue'
+  import MainSidebar from './../MainSidebar.vue'
+  // $.AdminLTE = require('admin-lte');
   export default {
     name: 'admin-wrapper',
     mounted () {
-
+      $(document).ready(function() {
+        console.log('Ready');
+        $.AdminLTE.layout.activate();
+      })
     },
     computed: {
       ...mapState({
           user: state => state.auth.user
       })
+    },
+    components: {
+      MainSidebar,
+      Notification
+    },
+    methods: {
+      logoutRequest() {
+        this.$store.dispatch('logoutRequest')
+          .then((response) => {
+              console.log(response)
+              this.$router.push({name: 'login'});
+          })
+          .catch((error) => {});
+      }
     }
   }
 </script>
 <style lang="scss" scoped>
-@import "~admin-lte/dist/css/AdminLTE.css";
-@import "~admin-lte/dist/css/skins/skin-blue-light.min.css";
+  @import "~admin-lte/dist/css/skins/skin-blue.min.css";
+
 </style>
