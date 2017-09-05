@@ -20,4 +20,8 @@ mix.autoload({
             publicPath: '/'
         }
 }).version().extract(['vue', 'jquery', 'bootstrap-sass'])
-   .sass('resources/assets/sass/app.scss', 'public/css');
+  .sass('resources/assets/sass/app.scss', 'public/css')
+  .sass('resources/assets/sass/ionicons.scss', 'public/css')
+  .copy('node_modules/admin-lte/plugins','public/plugins')
+  .copy('node_modules/icheck/skins/square/blue.png','public/css')
+  .copy('node_modules/icheck/skins/square/blue@2x.png','public/css');

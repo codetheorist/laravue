@@ -1,29 +1,16 @@
 <template>
     <div>
         <transition name="fade" mode="out-in">
-            <mini-top-bar v-if="!showTopBar()"></mini-top-bar>
-            <top-bar v-else-if="showTopBar()"></top-bar>
-        </transition>
-        <notification></notification>
-        <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
     </div>
 </template>
 <script>
     import jwtToken from './../helpers/jwt-token'
-    import TopBar from './TopBar.vue'
-    import MiniTopBar from './MiniTopBar.vue'
-    import Notification from './Notification.vue'
     export default {
         name: 'app',
         mounted() {
             this.$store.dispatch('setAuthUser');
-        },
-        components: {
-            TopBar,
-            MiniTopBar,
-            Notification
         },
         methods: {
           showTopBar() {

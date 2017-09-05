@@ -7,6 +7,8 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/ionicons/dist/scss/ionicons.scss";
+@import "node_modules/font-awesome/scss/font-awesome.scss";
 
 body > div > .container {
     padding: 1.25rem;

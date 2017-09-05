@@ -8,6 +8,8 @@ const Welcome = () => import('./components/Welcome.vue')
 const Login = () => import('./components/Login.vue')
 const Profile = () => import('./components/Profile.vue')
 const Register = () => import('./components/Register.vue')
+const AdminWrapper = () => import('./components/admin-wrapper/AdminWrapper.vue')
+const FrontendWrapper = () => import('./components/frontend-wrapper/FrontendWrapper.vue')
 
 const scrollBehavior = (to, from, savedPosition) => {
   if (savedPosition) {
@@ -37,36 +39,46 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: Welcome,
-            meta: {}
-        },
-        {
-            path: '/register',
-            name: 'register',
-            component: Register,
-            meta: {
-                title: 'Register',
-                requiresGuest: true
-            }
-        },
-        {
-            path: '/login',
-            name: 'login',
-            component: Login,
-            meta: {
-                title: 'Login',
-                requiresGuest: true
-            }
+            component: FrontendWrapper,
+            meta: {},
+            children: [
+                {
+                    path: '',
+                    name: 'home',
+                    component: Welcome,
+                    meta: {}
+                },
+                {
+                    path: '/register',
+                    name: 'register',
+                    component: Register,
+                    meta: {
+                        title: 'Register',
+                        requiresGuest: true
+                    }
+                },
+                {
+                    path: '/login',
+                    name: 'login',
+                    component: Login,
+                    meta: {
+                        title: 'Login',
+                        requiresGuest: true
+                    }
+                }
+            ]
         },
         {
             path: '/profile',
-            name: 'profile',
-            component: Profile,
-            meta: {
-                title: 'Profile',
-                requiresAuth: true
-            }
+            component: AdminWrapper,
+            children: [
+                {
+                    path: '',
+                    name: 'profile',
+                    component: Profile
+                }
+
+            ]
         }
     ]
 });

@@ -17,9 +17,12 @@ window.$ = window.jQuery = require('jquery');
 window.axios = axios;
 window.slick = slick;
 require('bootstrap-sass');
+require('admin-lte')
+window.toastr = require('toastr')
+require('icheck')
+require('slimscroll')
 sync(store, router)
 window.Vue = require('vue');
-
 //Vue.component('example', require('./components/Example.vue'));
 // sync(store, router)
 
