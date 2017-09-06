@@ -39,6 +39,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->command->info('Default permissions added.');
 
+        $this->call(RolesTableSeeder::class);
+        $this->command->info('Default roles added.');
+
         $faker = Faker::create();
         foreach (range(1,1500) as $index) {
             DB::table('users')->insert([
