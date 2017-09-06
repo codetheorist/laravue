@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Permission;
+use App\Role;
 use App\User;
 use Faker\Factory as Faker;
-use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
@@ -42,8 +43,21 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->command->info('Default roles added.');
 
+        // Seed the default permissions
+        $permissions = Permission::all();
+        $r = Role::where('name', '=', 'admin')->firstOrFail();
+
+        foreach ($permissions as $perm) {
+            $p = Permission::where('name', '=', $perm['name'])->firstOrFail();
+            $r->attachPermission($p);
+        }
+
+        $u = User::where('username', '=', 'root')->firstOrFail();
+        $u->attachRole($r);
+        $this->command->info('All permissions added to admin role.');
+
         $faker = Faker::create();
-        foreach (range(1,1500) as $index) {
+        foreach (range(1,250) as $index) {
             DB::table('users')->insert([
                 'first_name' => $faker->firstName,
                 'last_name' => $faker->lastName,
@@ -52,6 +66,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('secret'),
             ]);
         }
-        $this->command->info('500 random users added.');
+        $this->command->info('250 random users added.');
+
     }
 }

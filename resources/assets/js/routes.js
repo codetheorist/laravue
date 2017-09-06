@@ -77,7 +77,10 @@ const router = new VueRouter({
                 {
                     path: '',
                     name: 'dashboard',
-                    component: Profile
+                    component: Profile,
+                    meta: {
+                        requiresPermission: 'view_admin_dashboard'
+                    }
                 },
                 {
                     path: 'profile',
@@ -87,17 +90,26 @@ const router = new VueRouter({
                 {
                     path: 'user-list',
                     name: 'user-list',
-                    component: UserList
+                    component: UserList,
+                    meta: {
+                        requiresPermission: 'manage_users'
+                    }
                 },
                 {
                     path: 'roles',
                     name: 'roles',
-                    component: Permissions
+                    component: Permissions,
+                    meta: {
+                        requiresPermission: 'manage_roles'
+                    }
                 },
                 {
                     path: 'permissions',
                     name: 'permissions',
-                    component: Permissions
+                    component: Permissions,
+                    meta: {
+                        requiresPermission: 'manage_permissions'
+                    }
                 }
 
             ]
@@ -106,7 +118,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    Store.dispatch('hideErrorNotification');
 
     if(to.meta.requiresAuth) {
         if(Store.state.auth.user.authenticated || jwtToken.getToken()){
@@ -127,6 +138,42 @@ router.beforeEach((to, from, next) => {
 
         }
     }
+    if(to.meta.requiresRole !== undefined) {
+        Store.dispatch('setAuthUser')
+        if(!Store.state.auth.user.authenticated || !jwtToken.getToken()){
+            return next({name: 'login'});
+        }
+
+        let user = Store.state.auth.user
+
+        if(Store.state.auth.user.roles.indexOf(to.meta.requiresRole) !== -1) {
+            return next();
+        }
+        else {
+            Store.dispatch('showErrorNotification', 'You don\'t have permission for that.' );
+            return next({name: 'profile'});
+        }
+    }
+    if(to.meta.requiresPermission !== undefined) {
+        Store.dispatch('setAuthUser')
+        if(!Store.state.auth.user.authenticated || !jwtToken.getToken()){
+            return next({name: 'login'});
+        }
+        if(Store.state.auth.user.roles.indexOf('admin') !== -1){
+            return next();
+        }
+
+        let user = Store.state.auth.user
+
+        if(Store.state.auth.user.permissions.indexOf(to.meta.requiresPermission) !== -1) {
+            return next();
+        }
+        else {
+            Store.dispatch('showErrorNotification', 'You don\'t have permission for that.' );
+            return next({name: 'profile'});
+        }
+    }
+
     return next();
 });
 

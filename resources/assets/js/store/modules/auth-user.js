@@ -8,7 +8,10 @@ export default {
         username: null,
         first_name: null,
         last_name: null,
-        email: null
+        email: null,
+        jwt: null,
+        roles: null,
+        permissions: null
     },
     mutations: {
         [types.UPDATE_AUTH_USER_USERNAME] (state, payload) {
@@ -25,10 +28,13 @@ export default {
         },
         [types.SET_AUTH_USER] (state, payload) {
             state.authenticated = true;
-            state.username = payload.user.username;
-            state.first_name = payload.user.first_name;
-            state.last_name = payload.user.last_name;
-            state.email = payload.user.email;
+            state.username = payload.user.user.username;
+            state.first_name = payload.user.user.first_name;
+            state.last_name = payload.user.user.last_name;
+            state.email = payload.user.user.email;
+            state.jwt = payload.user.jwt;
+            state.roles = payload.user.roles;
+            state.permissions = payload.user.permissions;
         },
         [types.UNSET_AUTH_USER] (state, payload) {
             state.authenticated = false;
@@ -36,6 +42,9 @@ export default {
             state.first_name = null;
             state.last_name = null;
             state.email = null;
+            state.jwt = null;
+            state.roles = null;
+            state.permissions = null;
         }
     },
     actions: {
@@ -44,7 +53,7 @@ export default {
                 .then(response => {
                     commit({
                         type: types.SET_AUTH_USER,
-                        user: response.data.user
+                        user: response.data
                     })
                 })
                 .catch(error => {
