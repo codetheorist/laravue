@@ -69,6 +69,12 @@ class PermissionsTableSeeder extends Seeder
                 'category' => 'users'
             ],
             [
+                'name' => 'manage_users',
+                'display_name' => 'Manage Users',
+                'description' => 'Manage Users',
+                'category' => 'users'
+            ],
+            [
                 'name' => 'manage_roles',
                 'display_name' => 'Manage Roles',
                 'description' => 'Manage Roles',

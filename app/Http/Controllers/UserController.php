@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $response = User::all();
+        $response = User::paginate(20)->all();
 
         return response($response);
     }
@@ -43,6 +43,20 @@ class UserController extends Controller
     {
         $response = [];
         $response['user'] = $request->user();
+        $response['roles'] = [];
+        $response['permissions'] = [];
+
+        // $count = 0;
+        // foreach($request->user()->roles()->get() as $index => $role) {
+        //     $response['roles'][] = $role->name;
+        // }
+
+        foreach($request->user()->roles()->get() as $index => $role) {
+            $response['roles'][] = $role->name;
+            foreach($role->perms()->get() as $i => $perm) {
+                $response['permissions'][] = $perm['name'];
+            }
+        }
 
         return $response;
     }

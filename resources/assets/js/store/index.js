@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 
 import notification from "./modules/notification";
 import auth from "./modules/auth"
+import permissions from "./modules/permissions"
+import users from "./modules/users"
 Vue.use(Vuex);
 
 const getters = {
@@ -16,7 +18,9 @@ export default new Vuex.Store({
   actions,
   modules: {
     auth,
-    notification
+    notification,
+    permissions,
+    users
   },
   strict: true
 });

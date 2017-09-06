@@ -16,13 +16,12 @@
                 'csrfToken' => csrf_token(),
                 'siteName'  => config('app.name'),
                 'apiDomain' => config('app.url').'/api',
-                'css' => mix('css/app.css'),
                 'frontpage' => true
             ]) !!}
         </script>
         <!-- Styles -->
         <!-- Styles -->
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/all.css') }}" rel="stylesheet">
         <style>
             .flex-center.position-ref.full-height {
                 background-color: #fff;
@@ -69,7 +68,7 @@
 
         </style>
     </head>
-    <body>
+    <body class="hold-transition skin-blue sidebar-mini">
         <div id="app" class="front">
             <div class="flex-center position-ref full-height">
                 @if (Route::has('login'))
