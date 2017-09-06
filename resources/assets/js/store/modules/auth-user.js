@@ -10,8 +10,16 @@ export default {
         last_name: null,
         email: null,
         jwt: null,
-        roles: null,
-        permissions: null
+        roles: [],
+        permissions: []
+    },
+    getters: {
+        getUserRoles: (state, getters) => {
+            return state.roles
+        },
+        getUserPermissions: (state, getters) => {
+            return state.permissions
+        }
     },
     mutations: {
         [types.UPDATE_AUTH_USER_USERNAME] (state, payload) {
@@ -43,8 +51,8 @@ export default {
             state.last_name = null;
             state.email = null;
             state.jwt = null;
-            state.roles = null;
-            state.permissions = null;
+            state.roles = [];
+            state.permissions = [];
         }
     },
     actions: {

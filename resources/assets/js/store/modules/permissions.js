@@ -44,7 +44,6 @@ const actions = {
       console.log(data)
       axios.post(api.attachPermission, data)
       .then(response => {
-        console.log('Done')
         dispatch('loadRoles')
       })
       .catch(error => {

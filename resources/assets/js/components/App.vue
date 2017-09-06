@@ -9,8 +9,11 @@
     import jwtToken from './../helpers/jwt-token'
     export default {
         name: 'app',
-        mounted() {
+        created () {
             this.$store.dispatch('setAuthUser');
+        },
+        mounted() {
+
         }
     }
 </script>

@@ -5,8 +5,8 @@ import axios from 'axios';
 import { sync } from 'vuex-router-sync'
 import trumbowyg from 'vue-trumbowyg';
 import 'trumbowyg/dist/ui/trumbowyg.css';
-import router from './routes';
 import store from './store/index';
+import router from './routes';
 import App from './components/App.vue';
 import jwtToken from './helpers/jwt-token';
 import VueNumeric from 'vue-numeric'

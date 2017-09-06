@@ -84,11 +84,6 @@
     },
     mounted () {
       this.$store.dispatch('loadPermissions')
-
-      //console.log(this.allRoles())
-      // this.init()
-      // console.log(this.allRoles())
-
     }
   }
 </script>

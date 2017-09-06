@@ -85,7 +85,11 @@ const router = new VueRouter({
                 {
                     path: 'profile',
                     name: 'profile',
-                    component: Profile
+                    component: Profile,
+                    meta: {
+                        title: 'Profile',
+                        requiresAuth: true
+                    }
                 },
                 {
                     path: 'user-list',
@@ -119,59 +123,54 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 
-    if(to.meta.requiresAuth) {
-        if(Store.state.auth.user.authenticated || jwtToken.getToken()){
-            return next();
-
-        }
-        else {
-            return next({name: 'login'});
-
-        }
-    }
-    if(to.meta.requiresGuest) {
-        if(Store.state.auth.user.authenticated || jwtToken.getToken()) {
-            return next({name: 'profile'});
-        }
-        else {
-            return next();
-
-        }
-    }
-    if(to.meta.requiresRole !== undefined) {
+    function loginCheck(type, name = null) {
         Store.dispatch('setAuthUser')
-        if(!Store.state.auth.user.authenticated || !jwtToken.getToken()){
-            return next({name: 'login'});
-        }
+        setTimeout(function() {
+            let user = Store.state.auth.user
 
-        let user = Store.state.auth.user
+            if (type === 'auth' && (user.authenticated || jwtToken.getToken())) {
+                return next();
+            } else if (type === 'auth' && (!user.authenticated || !jwtToken.getToken())) {
+                return next({name: 'login'});
+            }
 
-        if(Store.state.auth.user.roles.indexOf(to.meta.requiresRole) !== -1) {
-            return next();
-        }
-        else {
-            Store.dispatch('showErrorNotification', 'You don\'t have permission for that.' );
-            return next({name: 'profile'});
-        }
+            if (type === 'guest' && (!user.authenticated &&  !jwtToken.getToken())) {
+                return next();
+            } else if (type === 'guest' && (user.authenticated || jwtToken.getToken())) {
+                return next({name: 'login'});
+            }
+
+            if(user.authenticated || jwtToken.getToken()){
+
+                if(Store.state.auth.user[type + 's'].indexOf('admin') !== -1){
+                    return next();
+                }
+
+                if(user[type + 's'].indexOf(name) === -1) {
+                    Store.dispatch('showErrorNotification', 'You don\'t have permission for that.' );
+                    return next({name: 'profile'});
+                }
+
+                return next();
+            } else {
+                return next({name: 'login'});
+            }
+        }, 250)
+    }
+
+    if(to.meta.requiresAuth) {
+        loginCheck('auth')
+    }
+
+    if(to.meta.requiresGuest) {
+        loginCheck('guest')
+    }
+
+    if(to.meta.requiresRole !== undefined) {
+        loginCheck('role', to.meta.requiresRole)
     }
     if(to.meta.requiresPermission !== undefined) {
-        Store.dispatch('setAuthUser')
-        if(!Store.state.auth.user.authenticated || !jwtToken.getToken()){
-            return next({name: 'login'});
-        }
-        if(Store.state.auth.user.roles.indexOf('admin') !== -1){
-            return next();
-        }
-
-        let user = Store.state.auth.user
-
-        if(Store.state.auth.user.permissions.indexOf(to.meta.requiresPermission) !== -1) {
-            return next();
-        }
-        else {
-            Store.dispatch('showErrorNotification', 'You don\'t have permission for that.' );
-            return next({name: 'profile'});
-        }
+        loginCheck('permission', to.meta.requiresPermission)
     }
 
     return next();
