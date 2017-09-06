@@ -46,7 +46,9 @@ class PermissionController extends Controller
     {
 
         $this->validate($request, [
-            'name'=>'required|max:40',
+            'name'=>'required|max:60',
+            'display_name' => 'required|max:60',
+            'description' => 'required'
         ]);
 
         $name = $request['name'];
