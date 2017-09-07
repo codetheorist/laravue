@@ -11,7 +11,7 @@ import App from './components/App.vue';
 import jwtToken from './helpers/jwt-token';
 import VueNumeric from 'vue-numeric'
 import infiniteScroll from 'vue-infinite-scroll'
-
+Vue.component('pagination', require('./components/Paginator.vue'));
 try {
   window.$ = window.jQuery = require('jquery');
 

@@ -20,6 +20,9 @@
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">ADMIN MENU</li>
+        <router-link v-if="user.authenticated" :to="{name: 'dashboard'}" tag="li" activeClass="active" exact>
+          <a href="#"><i class="fa fa-user"></i> <span>Dashboard</span></a>
+        </router-link>
         <router-link v-if="user.authenticated" :to="{name: 'profile'}" tag="li" activeClass="active" exact>
           <a href="#"><i class="fa fa-user"></i> <span>Profile</span></a>
         </router-link>

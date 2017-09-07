@@ -24,6 +24,7 @@ Route::get('/admin', 'ProfileController@show')->name('admin');
 Route::get('/admin/profile', 'ProfileController@show')->name('profile');
 Route::get('/admin/permissions', 'ProfileController@show')->name('permissions');
 Route::get('/admin/roles', 'ProfileController@show')->name('roles');
+Route::get('/admin/user-list', 'ProfileController@show')->name('roles');
 
 Auth::routes();
 

@@ -13,16 +13,113 @@
     </section>
 
     <!-- Main content -->
-    <section v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="1" class="content container-fluid">
+    <section class="content container-fluid">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-push-6">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">All Users</h3>
+              <div class="box-tools pull-right">
+                <div class="has-feedback">
+                  <input type="text" class="form-control input-sm" v-model="userFilter" placeholder="Search...">
+                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                </div>
+              </div><!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table rwd-table">
+                <thead>
+                  <tr>
+                    <th>
+                      Username
+                    </th>
+                    <th>
+                      Email
+                    </th>
+                    <th>
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="user in data.data">
+                    <td data-head="Username">{{ user.username }}</td>
+                    <td data-head="Email">{{ user.email }}</td>
+                    <td data-head="Actions" class="actions-column">
+
+                      <span class="actions-button">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action
+                          <span class="fa fa-caret-down"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" data-toggle="modal" data-target="#modal-default"><span class="fa fa-pencil"></span> Edit</a></li>
+                          <li><a href="#" data-toggle="modal" data-target="#modal-danger"><span class="fa fa-close"></span> Disable</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#" data-toggle="modal" data-target="#modal-danger"><span class="fa fa-trash"></span> Delete</a></li>
+                        </ul>
+                      </span>
+                      <div class="modal fade" id="modal-default" style="display: none;">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span></button>
+                              <h4 class="modal-title">Default Modal</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>One fine body…</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
+                      <div class="modal modal-danger fade" id="modal-danger" style="display: none;">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span></button>
+                              <h4 class="modal-title">Delete {{ user.username }}</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>Are you sure you would like to delete {{ user.first_name }} {{ user.last_name }}'s user profile?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
+                              <button type="button" class="btn btn-primary">Yes</button>
+                            </div>
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <pagination :data="data" :limit="1" v-on:pagination-change-page="computedResults"></pagination>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-pull-6">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Admin Users</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-responsive">
+              <table class="table rwd-table">
                 <thead>
                   <td>
                     #
@@ -84,53 +181,6 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">All Users</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table class="table table-responsive">
-                <thead>
-                  <tr>
-                    <th>
-                      ID
-                    </th>
-                    <th>
-                      Username
-                    </th>
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      Email
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="user in items">
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.username }}</td>
-                    <td>{{ user.first_name }} {{ user.last_name }}</td>
-                    <td>{{ user.email }}</td>
-                  </tr>
-                </tbody>
-
-              </table>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
         <!-- /.col -->
       </div>
     <!-- /.row -->
@@ -140,44 +190,69 @@
 </template>
 <script>
   import {mapState} from 'vuex'
+  import FooTable from 'footable'
+
   export default {
     name: 'user-list',
+    created() {
+      // Fetch initial results
+      this.getResults();
+    },
     data () {
       return {
+        userFilter: null,
         // users: []
         page: 1,
-        items: [],
+        data: {},
         busy: false,
         isEditing: false
       }
     },
-    computed: {
-      ...mapState({
-        users: state => state.users.users
-      })
-    },
-    mounted () {
-      this.$store.dispatch('loadUsers')
+    watch: {
+      userFilter: function (val) {
+        this.computedResults(1);
+      }
     },
     methods: {
-      loadMore: function() {
-        this.busy = true;
-        var url = '/api/users' + (this.page > 1 ? '?page=' + this.page : '');
-        axios.get(url)
-        .then(response => {
-          var data = response.data;
-          // Push the response data into items
-          for (var i = 0, j = data.length; i < j; i++) {
-            this.items.push(data[i]);
+      // Our method to GET results from a Laravel endpoint
+      getResults(page) {
+        if (typeof page === 'undefined') {
+          page = 1;
+        }
+        // Using axios as an example
+        axios.get('/api/users?page=' + page)
+          .then(response => {
+            return response.data;
+          }).then(data => {
+            this.data = data;
+          });
+      },
+      computedResults(page) {
+        let filter = this.userFilter;
+        if (this.userFilter !== null) {
+          if (typeof page === 'undefined') {
+            page = 1;
           }
-          console.log(this.items);
-          // If the response data is empty,
-          // disable the infinite-scroll
-          this.busy = (j < 1);
-          // Increase the page number
-          this.page++;
-        });
+          // Using axios as an example
+          axios.get('/api/users?page=' + page + '&name=' + this.userFilter)
+            .then(response => {
+              return response.data;
+            }).then(data => {
+              this.data = data;
+            });
+        } else {
+          this.getResults(page)
+        }
+
       }
     }
   }
 </script>
+<style scoped>
+  .email-column {
+    word-wrap: break-word;
+  }
+  .actions-button {
+    position: relative;
+  }
+</style>

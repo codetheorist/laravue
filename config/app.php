@@ -13,7 +13,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'google_maps' => env('GOOGLE_MAPS', '');
     /*
     |--------------------------------------------------------------------------
     | Application Environment

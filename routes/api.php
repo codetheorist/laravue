@@ -27,5 +27,8 @@ Route::group(['middleware' => 'jwt.auth'], function()
 {
     Route::get('/permissions', 'PermissionController@index');
     Route::get('user', 'UserController@show');
+    Route::post('user', 'UserController@update');
     Route::get('users', 'UserController@index');
+    Route::post('addresses/new', 'AddressController@store');
+    Route::delete('addresses/{id}', 'AddressController@destroy');
 });

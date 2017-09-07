@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
             DB::table('users')->insert([
                 'first_name' => $faker->firstName,
                 'last_name' => $faker->lastName,
-                'username' => $faker->name,
+                'username' => $faker->userName,
                 'email' => $faker->email,
                 'password' => bcrypt('secret'),
             ]);

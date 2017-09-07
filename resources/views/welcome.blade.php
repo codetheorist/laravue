@@ -9,6 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Takeaway Town') }}</title>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD1HRHyMjIogjxDuJ_OG9eMctiyURL3IU&libraries=places"></script>
 
         <script>
             window.Laravel = {!! json_encode([

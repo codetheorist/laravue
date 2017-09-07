@@ -9,11 +9,16 @@ export default {
         first_name: null,
         last_name: null,
         email: null,
+        occupation: null,
         jwt: null,
         roles: [],
-        permissions: []
+        permissions: [],
+        addresses: []
     },
     getters: {
+        getAuthUser: (state, getters) => {
+            return state
+        },
         getUserRoles: (state, getters) => {
             return state.roles
         },
@@ -34,13 +39,18 @@ export default {
         [types.UPDATE_AUTH_USER_EMAIL] (state, payload) {
             state.email = payload.value;
         },
+        [types.UPDATE_AUTH_USER_OCCUPATION] (state, payload) {
+            state.occupation = payload.value;
+        },
         [types.SET_AUTH_USER] (state, payload) {
-            state.authenticated = true;
+            state.authenticated = payload.user.user.id;
             state.username = payload.user.user.username;
             state.first_name = payload.user.user.first_name;
             state.last_name = payload.user.user.last_name;
             state.email = payload.user.user.email;
+            state.occupation = payload.user.user.occupation;
             state.jwt = payload.user.jwt;
+            state.addresses = payload.user.addresses;
             state.roles = payload.user.roles;
             state.permissions = payload.user.permissions;
         },
@@ -50,13 +60,30 @@ export default {
             state.first_name = null;
             state.last_name = null;
             state.email = null;
+            state.occupation = null;
             state.jwt = null;
+            state.addresses = [];
             state.roles = [];
             state.permissions = [];
         }
     },
     actions: {
+        updateProfileRequest: ({dispatch}, formData) => {
+            return new Promise((resolve, reject) => {
+                axios.post(api.apiDomain + '/user', formData)
+                    .then(response => {
+                        // dispatch('updateProfileSuccess', response.data);
+                        dispatch('setAuthUser')
+                        resolve();
+                    })
+                    .catch(error => {
+                        // dispatch('updateProfileFailure', error.response.data);
+                        reject();
+                    });
+            })
+        },
         setAuthUser: ({state, commit, dispatch}) => {
+            console.log('Set Auth User')
             axios.get(api.currentUser)
                 .then(response => {
                     commit({

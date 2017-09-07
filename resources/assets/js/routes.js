@@ -4,6 +4,7 @@ import Store from './store';
 import jwtToken from './helpers/jwt-token';
 Vue.use(VueRouter);
 
+const Dashboard = () => import('./components/Dashboard.vue')
 const Welcome = () => import('./components/Welcome.vue')
 const Login = () => import('./components/Login.vue')
 const Profile = () => import('./components/Profile.vue')
@@ -77,7 +78,7 @@ const router = new VueRouter({
                 {
                     path: '',
                     name: 'dashboard',
-                    component: Profile,
+                    component: Dashboard,
                     meta: {
                         requiresPermission: 'view_admin_dashboard'
                     }
@@ -122,6 +123,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+    Store.dispatch('setAuthUser')
 
     function loginCheck(type, name = null) {
         Store.dispatch('setAuthUser')

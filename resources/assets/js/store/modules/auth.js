@@ -11,7 +11,7 @@ export default {
   modules: {
     login,
     password,
-    profile,
+    // profile,
     register,
     user
   }
