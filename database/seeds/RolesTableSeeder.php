@@ -19,6 +19,16 @@ class RolesTableSeeder extends Seeder
                 'description' => 'User has full priveleges'
             ],
             [
+                'name' => 'agent',
+                'display_name' => 'Agent',
+                'description' => 'User has priveleges required for field agents.'
+            ],
+            [
+                'name' => 'customer_service',
+                'display_name' => 'Customer Service',
+                'description' => 'User role has the neccessary permissions for customer service tasks.'
+            ],
+            [
                 'name' => 'owner',
                 'display_name' => 'Owner',
                 'description' => 'User is project owner'

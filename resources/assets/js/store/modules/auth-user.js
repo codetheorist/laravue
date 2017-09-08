@@ -1,5 +1,4 @@
 import store from './../index';
-import * as api from './../../config';
 import * as types from './../../mutation-types';
 
 export default {
@@ -70,7 +69,7 @@ export default {
     actions: {
         updateProfileRequest: ({dispatch}, formData) => {
             return new Promise((resolve, reject) => {
-                axios.post(api.apiDomain + '/user', formData)
+                axios.post(route('api.auth.update'), formData)
                     .then(response => {
                         // dispatch('updateProfileSuccess', response.data);
                         dispatch('setAuthUser')
@@ -84,7 +83,7 @@ export default {
         },
         setAuthUser: ({state, commit, dispatch}) => {
             console.log('Set Auth User')
-            axios.get(api.currentUser)
+            axios.get(route('api.users.show'))
                 .then(response => {
                     commit({
                         type: types.SET_AUTH_USER,

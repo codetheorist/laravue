@@ -70,6 +70,7 @@
         </style>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
+        @routes
         <div id="app" class="front">
             <div class="flex-center position-ref full-height">
                 @if (Route::has('login'))

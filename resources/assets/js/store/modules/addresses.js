@@ -1,5 +1,4 @@
 import store from './../index';
-import * as api from './../../config';
 import * as types from './../../mutation-types';
 
 export default {
@@ -22,7 +21,7 @@ export default {
     actions: {
         removeAddress: ({dispatch}, id) => {
           return new Promise((resolve, reject) => {
-            axios.delete(api.apiDomain + '/addresses/' + id)
+            axios.delete(route('api.addresses.delete', id))
               .then(response => {
                 // dispatch('deleteMenuItemSuccess', response.data);
                 resolve();
@@ -35,7 +34,7 @@ export default {
         },
         createAddress: ({dispatch}, formData) => {
             return new Promise((resolve, reject) => {
-                axios.post(api.createAddress, formData)
+                axios.post(route('api.addresses.new'), formData)
                     .then(response => {
                         // dispatch('updateProfileSuccess', response.data);
                         dispatch('setAuthUser')

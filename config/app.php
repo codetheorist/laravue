@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Tightenco\Ziggy\ZiggyServiceProvider::class
     ],
 
     /*

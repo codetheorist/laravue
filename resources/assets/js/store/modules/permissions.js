@@ -1,4 +1,3 @@
-import * as api from './../../config';
 import jwtToken from './../../helpers/jwt-token';
 import * as types from './../../mutation-types';
 // initial state
@@ -24,7 +23,7 @@ const getters = {
 // actions
 const actions = {
   loadPermissions ({commit, dispatch}) {
-    axios.get(api.loadPermissions)
+    axios.get(route('api.permissions.index'))
     .then(response => {
       commit('loadPermissions', response.data)
     })
@@ -32,7 +31,7 @@ const actions = {
     })
   },
   loadRoles ({commit, dispatch}) {
-    axios.get(api.loadRoles)
+    axios.get(route('api.roles.index'))
     .then(response => {
       commit('loadRoles', response.data)
     })

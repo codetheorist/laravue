@@ -22,6 +22,7 @@
     </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+    @routes
     <div id="app">
         @yield('content')
     </div>

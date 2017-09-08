@@ -1,4 +1,3 @@
-import * as api from './../../config';
 import jwtToken from './../../helpers/jwt-token';
 import * as types from './../../mutation-types';
 // initial state
@@ -13,7 +12,7 @@ const getters = {
 const actions = {
   deleteUserRequest: ({dispatch}, id) => {
     return new Promise((resolve, reject) => {
-      axios.delete(api.apiDomain + '/user/' + id)
+      axios.delete(route('api.users.delete', id))
         .then(response => {
           console.log('Done')
           dispatch('loadUsers')
@@ -28,7 +27,7 @@ const actions = {
       })
   },
   loadUsers ({commit, dispatch}) {
-    axios.get(api.loadUsers)
+    axios.get(route('api.users.index'))
     .then(response => {
       commit('loadUsers', response.data)
     })

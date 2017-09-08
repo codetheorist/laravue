@@ -108,7 +108,6 @@
             <!-- /.box-body -->
             <div class="box-footer clearfix">
               <pagination :data="data" :limit="1" v-on:pagination-change-page="computedResults"></pagination>
-
             </div>
           </div>
         </div>

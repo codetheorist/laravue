@@ -1,4 +1,3 @@
-import * as api from './../../config';
 import jwtToken from './../../helpers/jwt-token';
 import * as types from './../../mutation-types';
 import login from './login';
