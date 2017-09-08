@@ -13,6 +13,8 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
         "oriceon/laravel-settings": "^1.1",
+        "owen-it/laravel-auditing": "^4.1",
+        "rap2hpoutre/laravel-log-viewer": "^0.10.4",
         "spatie/laravel-newsletter": "^3.7",
         "tightenco/ziggy": "^0.4.1",
         "tymon/jwt-auth": "^0.5.9",

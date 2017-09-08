@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
   public function run()
   {
     // Call Permission Categories seeder
+    $this->call(CountriesTableSeeder::class);
+    $this->command->info('Default countries added.');
+
+    // Call Permission Categories seeder
     $this->call(PermissionCategoriesTableSeeder::class);
     $this->command->info('Default permission categories added.');
 

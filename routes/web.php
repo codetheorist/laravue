@@ -18,7 +18,7 @@
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
+Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'ProfileController@show')->name('admin');
 Route::get('/admin/profile', 'ProfileController@show')->name('profile');
