@@ -187,6 +187,11 @@ return [
         Laracademy\Generators\GeneratorsServiceProvider::class,
         AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
         Clarkeash\Doorman\Providers\DoormanServiceProvider::class,
+        Spatie\Analytics\AnalyticsServiceProvider::class,
+        Spatie\UptimeMonitor\UptimeMonitorServiceProvider::class,
+        Brotzka\DotenvEditor\DotenvEditorServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+        PrettyRoutes\ServiceProvider::class,
     ],
 
     /*
@@ -202,6 +207,7 @@ return [
 
     'aliases' => [
         'Activity' => Spatie\Activitylog\ActivitylogFacade::class,
+        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -209,11 +215,13 @@ return [
         'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'Config' => Illuminate\Support\Facades\Config::class,
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
         'DB' => Illuminate\Support\Facades\DB::class,
         'Doorman' => Clarkeash\Doorman\Facades\Doorman::class,
+        'DotenvEditor' => Brotzka\DotenvEditor\DotenvEditorFacade::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,

@@ -97,7 +97,7 @@ class DatabaseSeeder extends Seeder
     // Randomize user creation dates
     $all = User::all();
     foreach ($all as $user) {
-      $user->created_at = $faker->dateTimeBetween($startDate = '-3 years', $endDate = 'now', $timezone = date_default_timezone_get());
+      $user->created_at = $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now', $timezone = date_default_timezone_get());
       $user->updated_at = $faker->dateTimeBetween($startDate = $user->created_at, $endDate = 'now', $timezone = date_default_timezone_get());
       $user->save();
     }

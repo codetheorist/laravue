@@ -6,8 +6,8 @@ Route::post('sessions/create', 'AuthenticateController@authenticate')->name('api
 Route::post('token', 'AuthenticateController@token')->name('api.authenticate.token');
 
 // Authentication route
-Route::post('authenticate', 'JwtAuthenticateController@authenticate')->name('api.jwt.authenticate');
-Route::post('register', 'Auth\RegisterController@create')->name('api.users.register');
+// Route::post('authenticate', 'JwtAuthenticateController@authenticate')->name('api.jwt.authenticate');
+// Route::post('register', 'Auth\RegisterController@create')->name('api.users.register');
 
 /*
 |--------------------------------------------------------------------------
