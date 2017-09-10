@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use LERN;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -14,12 +15,12 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        \Illuminate\Auth\AuthenticationException::class,
-        \Illuminate\Auth\Access\AuthorizationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
-        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Illuminate\Session\TokenMismatchException::class,
-        \Illuminate\Validation\ValidationException::class,
+        // \Illuminate\Auth\AuthenticationException::class,
+        // \Illuminate\Auth\Access\AuthorizationException::class,
+        // \Symfony\Component\HttpKernel\Exception\HttpException::class,
+        // \Illuminate\Database\Eloquent\ModelNotFoundException::class,
+        // \Illuminate\Session\TokenMismatchException::class,
+        // \Illuminate\Validation\ValidationException::class,
     ];
 
     /**
@@ -32,7 +33,19 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        parent::report($exception);
+        if ($this->shouldReport($exception)) {
+            //Check to see if LERN is installed otherwise you will not get an exception.
+            if (app()->bound("lern")) {
+                app()->make("lern")->record($exception); //Record the Exception to the database
+                app()->make("lern")->notify($exception); //Notify the Exception
+
+                /*
+                OR...
+                app()->make("lern")->handle($exception); //Record and Notify the Exception
+                */
+            }
+        }
+        return parent::report($exception);
     }
 
     /**

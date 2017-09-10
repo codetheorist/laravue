@@ -181,6 +181,11 @@ return [
         Tightenco\Ziggy\ZiggyServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Spatie\Activitylog\ActivitylogServiceProvider::class,
+        Mpociot\Teamwork\TeamworkServiceProvider::class,
+        Tylercd100\LERN\LERNServiceProvider::class,
+        EricMakesStuff\ServerMonitor\ServerMonitorServiceProvider::class,
+        Laracademy\Generators\GeneratorsServiceProvider::class,
     ],
 
     /*
@@ -195,7 +200,7 @@ return [
     */
 
     'aliases' => [
-
+        'Activity' => Spatie\Activitylog\ActivitylogFacade::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -216,6 +221,7 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
+        "LERN" => Tylercd100\LERN\Facades\LERN::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,

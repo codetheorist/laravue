@@ -6,6 +6,7 @@ import auth from "./modules/auth"
 import permissions from "./modules/permissions"
 import users from "./modules/users"
 import addresses from "./modules/addresses"
+import restaurants from "./modules/restaurants"
 Vue.use(Vuex);
 
 const getters = {
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     notification,
     permissions,
     users,
+    restaurants
   },
   strict: true
 });
