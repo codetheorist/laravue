@@ -33,19 +33,21 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        LERN::record($exception);
         if ($this->shouldReport($exception)) {
             //Check to see if LERN is installed otherwise you will not get an exception.
-            if (app()->bound("lern")) {
-                app()->make("lern")->record($exception); //Record the Exception to the database
-                app()->make("lern")->notify($exception); //Notify the Exception
+            // if (app()->bound("lern")) {
+            //     app()->make("lern")->handle($exception); //Record and Notify the Exception
 
-                /*
-                OR...
-                app()->make("lern")->handle($exception); //Record and Notify the Exception
-                */
-            }
+
+            //     OR...
+            //     app()->make("lern")->record($exception); //Record the Exception to the database
+            //     app()->make("lern")->notify($exception); //Notify the Exception
+
+            // }
         }
-        return parent::report($exception);
+        parent::report($exception);
+        // parent::report($exception);
     }
 
     /**

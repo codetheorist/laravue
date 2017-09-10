@@ -7,13 +7,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use Spatie\Activitylog\LogsActivityInterface;
-use Spatie\Activitylog\LogsActivity;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Mpociot\Teamwork\Traits\UserHasTeams;
+use Tylercd100\LERN\Models\ExceptionModel;
 
-class User extends Authenticatable implements AuditableContract, LogsActivityInterface
+class User extends Authenticatable implements AuditableContract
 {
     use UserHasTeams, EntrustUserTrait, Notifiable, Auditable, LogsActivity;
+
+    public function getLogNameToUse(string $eventName = ''): string
+    {
+       return 'users';
+    }
 
     /**
      * Get the message that needs to be logged for the given event name.
@@ -21,7 +26,7 @@ class User extends Authenticatable implements AuditableContract, LogsActivityInt
      * @param string $eventName
      * @return string
      */
-    public function getActivityDescriptionForEvent($eventName)
+    public function getDescriptionForEvent($eventName)
     {
         if ($eventName == 'created')
         {
@@ -49,6 +54,10 @@ class User extends Authenticatable implements AuditableContract, LogsActivityInt
     protected $fillable = [
         'first_name', 'last_name', 'username', 'email', 'password', 'occupation', 'created_at', 'updated_at'
     ];
+
+    protected static $logAttributes = ['first_name', 'last_name', 'username', 'email', 'password', 'occupation', 'created_at', 'updated_at'];
+
+    protected static $logOnlyDirty = true;
 
     /**
      * The attributes that should be hidden for arrays.

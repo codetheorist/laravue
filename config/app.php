@@ -181,11 +181,12 @@ return [
         Tightenco\Ziggy\ZiggyServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-        Spatie\Activitylog\ActivitylogServiceProvider::class,
         Mpociot\Teamwork\TeamworkServiceProvider::class,
         Tylercd100\LERN\LERNServiceProvider::class,
         EricMakesStuff\ServerMonitor\ServerMonitorServiceProvider::class,
         Laracademy\Generators\GeneratorsServiceProvider::class,
+        AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
+        Clarkeash\Doorman\Providers\DoormanServiceProvider::class,
     ],
 
     /*
@@ -212,6 +213,7 @@ return [
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
         'DB' => Illuminate\Support\Facades\DB::class,
+        'Doorman' => Clarkeash\Doorman\Facades\Doorman::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
