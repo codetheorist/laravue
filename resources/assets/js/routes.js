@@ -8,6 +8,7 @@ const Dashboard = () => import('./components/Dashboard.vue')
 const Welcome = () => import('./components/Welcome.vue')
 const Login = () => import('./components/Login.vue')
 const Profile = () => import('./components/Profile.vue')
+const RestaurantList = () => import('./components/RestaurantList.vue')
 const UserList = () => import('./components/UserList.vue')
 const Register = () => import('./components/Register.vue')
 const Permissions = () => import('./components/Permissions.vue')
@@ -98,6 +99,14 @@ const router = new VueRouter({
                     component: UserList,
                     meta: {
                         requiresPermission: 'manage_users'
+                    }
+                },
+                {
+                    path: 'restaurants',
+                    name: 'restaurants',
+                    component: RestaurantList,
+                    meta: {
+                        requiresPermission: 'manage_restaurants'
                     }
                 },
                 {

@@ -26,6 +26,9 @@
         <router-link v-if="user.authenticated" :to="{name: 'profile'}" tag="li" activeClass="active" exact>
           <a href="#"><i class="fa fa-user"></i> <span>Profile</span></a>
         </router-link>
+        <router-link v-if="user.authenticated" :to="{name: 'restaurants'}" tag="li" activeClass="active" exact>
+          <a href="#"><i class="fa fa-user"></i> <span>Restaurants</span></a>
+        </router-link>
         <li class="treeview">
           <a href="#"><i class="fa fa-users"></i> <span>Users</span>
             <span class="pull-right-container">

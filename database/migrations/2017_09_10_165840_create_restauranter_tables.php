@@ -18,18 +18,19 @@ class CreateRestauranterTables extends Migration
             $table->integer( 'current_restaurant_id' )->unsigned()->nullable();
         } );
 
-        Schema::create( \Config::get( 'restauranter.restauranter_restaurants_table' ), function ( Blueprint $table )
+        Schema::create( \Config::get( 'restauranter.restaurants_table' ), function ( Blueprint $table )
         {
             $table->increments( 'id' )->unsigned();
             $table->integer( 'owner_id' )->unsigned()->nullable();
             $table->string( 'name' );
-            $table->string( 'description' );
-            $table->binary( 'opening_times' );
+            $table->string( 'display_name' )->nullable();
+            $table->string( 'description' )->nullable();
+            $table->binary( 'opening_times' )->nullable();
             $table->integer( 'address_id' )->unsigned()->nullable();
             $table->timestamps();
         } );
 
-        Schema::create( \Config::get( 'restauranter.restauranter_user_table' ), function ( Blueprint $table )
+        Schema::create( \Config::get( 'restauranter.restaurant_staff_table' ), function ( Blueprint $table )
         {
             $table->integer( 'user_id' )->unsigned();
             $table->integer( 'restaurant_id' )->unsigned();
@@ -43,11 +44,11 @@ class CreateRestauranterTables extends Migration
 
             $table->foreign( 'restaurant_id' )
                 ->references( 'id' )
-                ->on( \Config::get( 'restauranter.restauranter_restaurants_table' ) )
+                ->on( \Config::get( 'restauranter.restaurants_table' ) )
                 ->onDelete( 'cascade' );
         } );
 
-        Schema::create( \Config::get( 'restauranter.restauranter_invites_table' ), function(Blueprint $table)
+        Schema::create( \Config::get( 'restauranter.restaurant_invites_table' ), function(Blueprint $table)
         {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
@@ -59,7 +60,7 @@ class CreateRestauranterTables extends Migration
             $table->timestamps();
             $table->foreign( 'restaurant_id' )
                 ->references( 'id' )
-                ->on( \Config::get( 'restauranter.restauranter_restaurants_table' ) )
+                ->on( \Config::get( 'restauranter.restaurants_table' ) )
                 ->onDelete( 'cascade' );
         });
     }
@@ -76,13 +77,13 @@ class CreateRestauranterTables extends Migration
             $table->dropColumn('current_restaurant_id');
         });
 
-        Schema::table(\Config::get('restauranter.restauranter_user_table'), function (Blueprint $table) {
-            $table->dropForeign(\Config::get('restauranter.restauranter_user_table').'_user_id_foreign');
-            $table->dropForeign(\Config::get('restauranter.restauranter_user_table').'_restaurant_id_foreign');
+        Schema::table(\Config::get('restauranter.restaurant_staff_table'), function (Blueprint $table) {
+            $table->dropForeign(\Config::get('restauranter.restaurant_staff_table').'_user_id_foreign');
+            $table->dropForeign(\Config::get('restauranter.restaurant_staff_table').'_restaurant_id_foreign');
         });
 
-        Schema::drop(\Config::get('restauranter.restauranter_user_table'));
-        Schema::drop(\Config::get('restauranter.restauranter_invites_table'));
-        Schema::drop(\Config::get('restauranter.restauranter_restaurants_table'));
+        Schema::drop(\Config::get('restauranter.restaurant_staff_table'));
+        Schema::drop(\Config::get('restauranter.restaurant_invites_table'));
+        Schema::drop(\Config::get('restauranter.restaurants_table'));
     }
 }

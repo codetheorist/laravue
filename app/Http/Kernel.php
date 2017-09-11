@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'teamowner' => \Mpociot\Teamwork\Middleware\TeamOwner::class,
+        'restaurantowner' => \App\Middleware\RestaurantOwner::class,
     ];
 }

@@ -8,12 +8,13 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Mpociot\Teamwork\Traits\UserHasTeams;
 use Tylercd100\LERN\Models\ExceptionModel;
+use Mpociot\Teamwork\Traits\UserHasTeams;
+use App\Traits\UserHasRestaurants;
 
 class User extends Authenticatable implements AuditableContract
 {
-    use UserHasTeams, EntrustUserTrait, Notifiable, Auditable, LogsActivity;
+    use UserHasRestaurants, UserHasTeams, EntrustUserTrait, Notifiable, Auditable, LogsActivity;
 
     public function getLogNameToUse(string $eventName = ''): string
     {

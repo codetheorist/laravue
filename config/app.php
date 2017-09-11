@@ -192,6 +192,7 @@ return [
         Brotzka\DotenvEditor\DotenvEditorServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         PrettyRoutes\ServiceProvider::class,
+        App\Providers\RestauranterServiceProvider::class,
     ],
 
     /*

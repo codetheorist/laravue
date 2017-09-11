@@ -11,7 +11,18 @@ export default {
         }
     },
     mutations: {
+      loadRestaurants(state, restaurants) {
+        state.restaurants = restaurants
+      }
     },
     actions: {
+      loadRestaurants ({commit, dispatch}) {
+        axios.get(route('api.restaurants.index'))
+        .then(response => {
+          commit('loadRestaurants', response.data)
+        })
+        .catch(error => {
+        })
+      }
     }
 }

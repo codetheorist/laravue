@@ -11,6 +11,7 @@
         name: 'app',
         created () {
             this.$store.dispatch('setAuthUser');
+            this.$store.dispatch('loadRestaurants');
         },
         mounted() {
 

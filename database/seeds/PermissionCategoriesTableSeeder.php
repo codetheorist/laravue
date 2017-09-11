@@ -29,6 +29,11 @@ class PermissionCategoriesTableSeeder extends Seeder
                 'description' => ''
             ],
             [
+                'name' => 'restaurants',
+                'display_name' => 'Restaurants',
+                'description' => ''
+            ],
+            [
                 'name' => 'permissions',
                 'display_name' => 'Permissions',
                 'description' => ''

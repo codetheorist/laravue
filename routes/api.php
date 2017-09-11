@@ -27,10 +27,15 @@ Route::post('token', 'AuthenticateController@token')->name('api.authenticate.tok
 Route::group(['middleware' => 'jwt.auth'], function()
 {
     Route::get('/permissions', 'PermissionController@index')->name('api.permissions.index');
+    Route::get('/permissions', 'PermissionController@index')->name('api.permissions.index');
     Route::get('/roles', 'PermissionController@index')->name('api.roles.index');
     Route::get('user', 'UserController@show')->name('api.users.show');
     Route::post('user', 'UserController@update')->name('api.auth.update');
     Route::get('users', 'UserController@index')->name('api.users.index');
     Route::post('addresses/new', 'AddressController@store')->name('api.addresses.new');
     Route::delete('addresses/{id}', 'AddressController@destroy')->name('api.addresses.delete');
+});
+
+Route::group(['namespace' => 'Api', 'middleware' => 'jwt.auth'], function() {
+    Route::get('/restaurants', 'RestaurantController@index')->name('api.restaurants.index');
 });

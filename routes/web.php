@@ -35,6 +35,27 @@ Route::group(['prefix' => 'teams', 'namespace' => 'Teamwork'], function()
 
     Route::get('accept/{token}', 'AuthController@acceptInvite')->name('teams.accept_invite');
 });
+/**
+ * Teamwork routes
+ */
+Route::group(['prefix' => 'admin/restaurants', 'namespace' => 'Restauranter'], function()
+{
+    Route::get('/', 'RestaurantController@index')->name('restaurants.index');
+    Route::get('create', 'RestaurantController@create')->name('restaurants.create');
+    Route::post('restaurants', 'RestaurantController@store')->name('restaurants.store');
+    Route::get('edit/{id}', 'RestaurantController@edit')->name('restaurants.edit');
+    Route::put('edit/{id}', 'RestaurantController@update')->name('restaurants.update');
+    Route::delete('destroy/{id}', 'RestaurantController@destroy')->name('restaurants.destroy');
+    Route::get('switch/{id}', 'RestaurantController@switchRestaurant')->name('restaurants.switch');
+
+    Route::get('members/{id}', 'RestaurantStaffController@show')->name('restaurants.members.show');
+    Route::get('members/resend/{invite_id}', 'RestaurantStaffController@resendInvite')->name('restaurants.members.resend_invite');
+    Route::post('members/{id}', 'RestaurantStaffController@invite')->name('restaurants.members.invite');
+    Route::delete('members/{id}/{user_id}', 'RestaurantStaffController@destroy')->name('restaurants.members.destroy');
+
+    Route::get('accept/{token}', 'AuthController@acceptInvite')->name('restaurants.accept_invite');
+});
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
