@@ -3,22 +3,23 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Users
-        <small>Overview of users on the site.</small>
+        Restaurants
+        <small>Administer restaurants on the system.</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-        <li class="active">Users</li>
+        <li class="active">Restaurants</li>
       </ol>
+      <restaurant-editor v-if="isEditing === true" @close-modal="closeModal"></restaurant-editor>
     </section>
 
     <!-- Main content -->
     <section class="content container-fluid">
       <div class="row">
-        <div class="col-md-6 col-md-push-6">
+        <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">All Restaurants</h3>
+              <h3 class="box-title">Search Restaurants</h3>
               <div class="box-tools pull-right">
                 <div class="has-feedback">
                   <input type="text" class="form-control input-sm" v-model="restaurantFilter" placeholder="Search...">
@@ -32,10 +33,13 @@
                 <thead>
                   <tr>
                     <th>
-                      Username
+                      Display Name
                     </th>
                     <th>
-                      Email
+                      Slug
+                    </th>
+                    <th>
+                      Status
                     </th>
                     <th>
                       Actions
@@ -43,9 +47,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="restaurant in data.data">
-                    <td data-head="Name">{{ restaurant.name }}</td>
-                    <td data-head="Email"></td>
+                  <tr v-for="restaurant in data.data" :class="restaurant.enabled !== 1 ? 'danger' : 'success'">
+                    <td data-head="Display Name">{{ restaurant.display_name }}</td>
+                    <td data-head="Slug">{{ restaurant.name }}</td>
+                    <td data-head="Status">{{ restaurant.display_name }}</td>
                     <td data-head="Actions" class="actions-column">
 
                       <span class="actions-button">
@@ -53,32 +58,18 @@
                           <span class="fa fa-caret-down"></span>
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a href="#" data-toggle="modal" data-target="#modal-default"><span class="fa fa-pencil"></span> Edit</a></li>
-                          <li><a href="#" data-toggle="modal" data-target="#modal-danger"><span class="fa fa-close"></span> Disable</a></li>
+                          <li><a href="#" @click="modalMode('edit', restaurant.id)"><span class="fa fa-pencil"></span> Edit</a></li>
+                          <li><a href="#" @click="enabledToggle(restaurant.id, restaurant.enabled ? 0 : 1)">
+                            <span :class="['fa', restaurant.enabled !== 1 ? 'fa-check' : 'fa-close']"></span>
+                            <span v-text="restaurant.enabled !== 1 ? 'Enable' : 'Disable'">
+
+                            </span></a></li>
                           <li class="divider"></li>
-                          <li><a href="#" data-toggle="modal" data-target="#modal-danger"><span class="fa fa-trash"></span> Delete</a></li>
+                          <li><a href="#" @click="modalMode('delete', restaurant.id)"><span class="fa fa-trash"></span> Delete</a></li>
                         </ul>
                       </span>
-                      <div class="modal fade" id="modal-default" style="display: none;">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span></button>
-                              <h4 class="modal-title">Default Modal</h4>
-                            </div>
-                            <div class="modal-body">
-                              <p>One fine body…</p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                          </div>
-                          <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                      </div>
+                      <restaurant-editor @close-modal="closeModal" v-if="isEditing === restaurant.id" :restaurant="restaurant" class="restaurant-editor"></restaurant-editor>
+                      <restaurant-deleter @close-modal="closeModal" v-if="isDeleting === restaurant.id" :restaurant="restaurant" class="restaurant-deleter"></restaurant-deleter>
                       <div class="modal modal-danger fade" id="modal-danger" style="display: none;">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -111,75 +102,6 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-md-pull-6">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Restaurant Owners</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table class="table rwd-table">
-                <thead>
-                  <td>
-                    #
-                  </td>
-                  <td>
-                    Task
-                  </td>
-                  <td>
-                    Progress
-                  </td>
-                  <td>
-                    Label
-                  </td>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1.</td>
-                    <td>Update software</td>
-                    <td>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-red">55%</span></td>
-                  </tr>
-                  <tr>
-                    <td>2.</td>
-                    <td>Clean database</td>
-                    <td>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-yellow">70%</span></td>
-                  </tr>
-                  <tr>
-                    <td>3.</td>
-                    <td>Cron job running</td>
-                    <td>
-                      <div class="progress progress-xs progress-striped active">
-                        <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-light-blue">30%</span></td>
-                  </tr>
-                  <tr>
-                    <td>4.</td>
-                    <td>Fix and squish bugs</td>
-                    <td>
-                      <div class="progress progress-xs progress-striped active">
-                        <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-green">90%</span></td>
-                  </tr>
-                </tbody>
-
-              </table>
-            </div>
-          </div>
-        </div>
         <!-- /.col -->
       </div>
     <!-- /.row -->
@@ -190,12 +112,17 @@
 <script>
   import {mapState} from 'vuex'
   import FooTable from 'footable'
-
+  const RestaurantEditor = () => import('./RestaurantEditor.vue')
+  const RestaurantDeleter = () => import('./RestaurantDeleter.vue')
   export default {
     name: 'restaurant-list',
     created() {
       // Fetch initial results
       this.getResults();
+    },
+    components: {
+      RestaurantEditor,
+      RestaurantDeleter
     },
     data () {
       return {
@@ -204,7 +131,8 @@
         page: 1,
         data: {},
         busy: false,
-        isEditing: false
+        isEditing: false,
+        isDeleting: false
       }
     },
     watch: {
@@ -213,6 +141,24 @@
       }
     },
     methods: {
+      enabledToggle(id, enabled) {
+        let data = {
+          enabled: enabled
+        }
+        axios.post(route('api.restaurants.toggle', id), data)
+          .then(response => {
+            this.getResults(this.page)
+          })
+      },
+      closeModal(mode) {
+        if (mode === 'edit') {
+          this.isEditing = false
+          this.getResults()
+        } else if (mode === 'delete') {
+          this.isDeleting = false
+          this.getResults()
+        }
+      },
       // Our method to GET results from a Laravel endpoint
       getResults(page) {
         if (typeof page === 'undefined') {
@@ -225,6 +171,33 @@
           }).then(data => {
             this.data = data;
           });
+      },
+      modalMode: function(mode, id) {
+        if (mode === 'delete') {
+          this.deleteMode(id)
+        } else if (mode === 'edit') {
+          this.editorMode(id)
+        }
+      },
+      editorMode: function(value) {
+        // If the editor is not already open for the selected category, open it
+        // if (this.isEditing != value) {
+        //   this.isEditing = value
+        // }
+        this.$router.push({ name: 'admin.restaurants.edit', params: { id: value }})
+      },
+      deleteMode: function(value) {
+        // If the editor is not already open for the selected category, open it
+        if (this.isDeleting != value) {
+          this.isDeleting = value
+        }
+
+        // When the modal window is hidden, remove the category from the 'isEditing' data paramter
+        // Bind this to ensure the view state gets updated properly
+        $('#delete-' + value).on('hidden.bs.modal', function (event) {
+          this.isDeleting = false;
+        }.bind(this))
+
       },
       computedResults(page) {
         let filter = this.restaurantFilter;
@@ -242,7 +215,6 @@
         } else {
           this.getResults(page)
         }
-
       }
     }
   }

@@ -70,9 +70,9 @@ class RestaurantStaffController extends Controller
         {
             Restauranter::inviteToRestaurant( $request->email, $restaurant, function( $invite )
             {
-                Mail::send('restauranter.emails.invite', ['restaurant' => $invite->restaurant, 'invite' => $invite], function ($m) use ($invite) {
-                    $m->to($invite->email)->subject('Invitation to join restaurant '.$invite->restaurant->name);
-                });
+                // Mail::send('restauranter.emails.invite', ['restaurant' => $invite->restaurant, 'invite' => $invite], function ($m) use ($invite) {
+                //     $m->to($invite->email)->subject('Invitation to join restaurant '.$invite->restaurant->name);
+                // });
                 // Send email to user
             });
         } else {

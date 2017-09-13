@@ -121,7 +121,7 @@
         this.$store.dispatch('createAddress', formData)
         .then((response) => {
           this.$emit('form-saved');
-            //this.$router.push({name: 'profile'});
+            //this.$router.push({name: 'admin.profile'});
         })
         .catch(() => {});
         if(this.formattedPlace) {

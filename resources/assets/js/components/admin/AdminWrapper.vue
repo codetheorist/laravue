@@ -153,7 +153,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <router-link :to="{name: 'profile'}" activeClass="active" class="btn btn-default btn-flat" exact>Profile</router-link>
+                    <router-link :to="{name: 'admin.profile'}" activeClass="active" class="btn btn-default btn-flat" exact>Profile</router-link>
                   </div>
                   <div class="pull-right">
                     <a class="btn btn-default btn-flat" href="#" @click.prevent="logoutRequest()">Sign out</a>
@@ -273,8 +273,8 @@
 <script>
   import $ from 'jquery';
   import { mapState } from 'vuex';
-  import Notification from './../Notification.vue'
-  import MainSidebar from './../MainSidebar.vue'
+  import Notification from './../shared/Notification.vue'
+  import MainSidebar from './MainSidebar.vue'
   // $.AdminLTE = require('admin-lte');
   export default {
     name: 'admin-wrapper',

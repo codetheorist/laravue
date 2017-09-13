@@ -11,6 +11,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Tylercd100\LERN\Models\ExceptionModel;
 use Mpociot\Teamwork\Traits\UserHasTeams;
 use App\Traits\UserHasRestaurants;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Config;
+use App\Events\UserJoinedRestaurant;
+use App\Events\UserLeftRestaurant;
+use App\Exceptions\UserNotInRestaurantException;
 
 class User extends Authenticatable implements AuditableContract
 {
@@ -72,6 +78,34 @@ class User extends Authenticatable implements AuditableContract
     public function addresses()
     {
         return $this->hasMany(Address::class, 'user_id', 'id');
+    }
+
+    /**
+     * Many-to-Many relations with the user model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function restaurants()
+    {
+        return $this->belongsToMany( Config::get( 'restauranter.restaurant_model' ),Config::get( 'restauranter.restaurant_staff_table' ), 'user_id', 'restaurant_id' )->withTimestamps();
+    }
+
+    /**
+     * has-one relation with the current selected team model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function currentRestaurant()
+    {
+        return $this->hasOne( Config::get( 'restauranter.restaurant_model' ), 'id', 'current_restaurant_id' );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function ownedRestaurants()
+    {
+        return $this->restaurants()->where( "owner_id", "=", $this->getKey() );
     }
 
 }

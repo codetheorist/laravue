@@ -2,7 +2,7 @@
     <div class="top-right links">
         <router-link v-if="!user.authenticated" :to="{name: 'login'}" activeClass="active" exact>Login</router-link>
         <router-link v-if="!user.authenticated" :to="{name: 'register'}" activeClass="active" exact>Register</router-link>
-        <router-link v-if="user.authenticated" :to="{name: 'profile'}" activeClass="active" exact>Profile</router-link>
+        <router-link v-if="user.authenticated" :to="{name: 'admin.profile'}" activeClass="active" exact>Profile</router-link>
         <a v-if="user.authenticated" href="#" @click.prevent="logoutRequest()">Logout</a>
     </div>
 </template>

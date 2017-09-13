@@ -15,6 +15,6 @@ class TestController extends Controller
         $height = '500px';
         $chart = Charts::database(User::all(), 'line', 'chartjs')->dimensions(0,$height)->title('Latest Users')->groupByDay('08', null, true)->elementLabel('New Users');
 
-        return response($chart)->json();
+        return view('test', ['chart' => $chart]);
     }
 }

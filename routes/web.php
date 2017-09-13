@@ -38,7 +38,7 @@ Route::group(['prefix' => 'teams', 'namespace' => 'Teamwork'], function()
 /**
  * Teamwork routes
  */
-Route::group(['prefix' => 'admin/restaurants', 'namespace' => 'Restauranter'], function()
+Route::group(['prefix' => 'restaurants', 'namespace' => 'Restauranter'], function()
 {
     Route::get('/', 'RestaurantController@index')->name('restaurants.index');
     Route::get('create', 'RestaurantController@create')->name('restaurants.create');
@@ -63,9 +63,13 @@ Route::get('/test', 'TestController@index');
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'ProfileController@show')->name('admin');
+Route::get('/admin/restaurants', 'ProfileController@show')->name('profile');
 Route::get('/admin/profile', 'ProfileController@show')->name('profile');
 Route::get('/admin/permissions', 'ProfileController@show')->name('permissions');
 Route::get('/admin/roles', 'ProfileController@show')->name('roles');
 Route::get('/admin/user-list', 'ProfileController@show')->name('roles');
+Route::any('{all}', function () {
+    return view('layouts.app');
+})->where(['all' => '.*']);
 
 Auth::routes();

@@ -137,9 +137,9 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import * as types from './../mutation-types';
-  import AddressForm from './AddressForm.vue'
-  import * as api from './../config';
+  import * as types from './../../../mutation-types';
+  import AddressForm from './../../shared/AddressForm.vue'
+  import * as api from './../../../config';
   export default {
     name: 'profile',
     data () {
@@ -230,7 +230,7 @@
       removeAddress (id) {
         this.$store.dispatch('removeAddress', id)
         .then((response) => {
-          // this.$router.push({name: 'profile'});
+          // this.$router.push({name: 'admin.profile'});
         })
         .catch((error) => {
         });
@@ -280,7 +280,7 @@
         this.$store.dispatch('updateProfileRequest', formData)
           .then(() => {
             console.log(formData)
-              this.$router.push({name: 'profile'});
+              this.$router.push({name: 'admin.profile'});
           })
           .catch(() => {});
       },

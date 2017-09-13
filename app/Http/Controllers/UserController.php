@@ -33,6 +33,14 @@ class UserController extends Controller
 
         return $response;
     }
+    public function toggle(Request $request, $id)
+    {
+
+        $response = User::findOrFail($id);
+        $response['enabled'] = $request->input('enabled');
+        $response->save();
+        return $response;
+    }
 
     /**
      * Remove the specified resource from storage.

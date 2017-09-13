@@ -52,7 +52,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <router-link :to="{name: 'profile'}" tag="li" activeClass="active" exact>
+                                <router-link :to="{name: 'admin.profile'}" tag="li" activeClass="active" exact>
                                   <a>Profile</a>
                                 </router-link>
                                 <li><a href="#" @click.prevent="logoutRequest()">Logout</a></li>

@@ -47,7 +47,7 @@
                 this.$store.dispatch('loginRequest', loginData)
                     .then((response) => {
                         // console.log(response)
-                        this.$router.push({name: 'profile'});
+                        this.$router.push({name: 'admin.profile'});
                     })
                     .catch((error) => {});
 

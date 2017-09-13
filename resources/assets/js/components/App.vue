@@ -12,6 +12,7 @@
         created () {
             this.$store.dispatch('setAuthUser');
             this.$store.dispatch('loadRestaurants');
+            this.$store.dispatch('loadAllStats');
         },
         mounted() {
 

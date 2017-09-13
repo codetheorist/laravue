@@ -4,8 +4,47 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "130ef16ef8b3d21bf95a9d3aaeaccd33",
+    "content-hash": "1d8c0c69f0b66f2afb064d609f352e95",
     "packages": [
+        {
+            "name": "aginev/login-activity",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aginev/login-activity.git",
+                "reference": "0190f0145b1de391b6bd7ecb51399254d73a1921"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aginev/login-activity/zipball/0190f0145b1de391b6bd7ecb51399254d73a1921",
+                "reference": "0190f0145b1de391b6bd7ecb51399254d73a1921",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aginev\\LoginActivity\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Atanas Ginev",
+                    "email": "naskospam@gmail.com"
+                }
+            ],
+            "description": "Track users login activity for Laravel 5",
+            "homepage": "http://aginev.com",
+            "keywords": [
+                "Laravel 5 login activity",
+                "login activity",
+                "login activity for Laravel 5"
+            ],
+            "time": "2016-02-04T12:22:42+00:00"
+        },
         {
             "name": "albertcht/invisible-recaptcha",
             "version": "1.7",

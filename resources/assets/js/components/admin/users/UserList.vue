@@ -15,7 +15,7 @@
     <!-- Main content -->
     <section class="content container-fluid">
       <div class="row">
-        <div class="col-md-6 col-md-push-6">
+        <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">All Users</h3>
@@ -43,7 +43,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="user in data.data">
+                  <tr v-for="user in data.data" :class="user.enabled !== 1 ? 'danger' : 'success'">
                     <td data-head="Username">{{ user.username }}</td>
                     <td data-head="Email">{{ user.email }}</td>
                     <td data-head="Actions" class="actions-column">
@@ -54,7 +54,11 @@
                         </button>
                         <ul class="dropdown-menu">
                           <li><a href="#" data-toggle="modal" data-target="#modal-default"><span class="fa fa-pencil"></span> Edit</a></li>
-                          <li><a href="#" data-toggle="modal" data-target="#modal-danger"><span class="fa fa-close"></span> Disable</a></li>
+                          <li><a href="#" @click="enabledToggle(user.id, user.enabled ? 0 : 1)">
+                            <span :class="['fa', user.enabled !== 1 ? 'fa-check' : 'fa-close']"></span>
+                            <span v-text="user.enabled !== 1 ? 'Enable' : 'Disable'">
+
+                            </span></a></li>
                           <li class="divider"></li>
                           <li><a href="#" data-toggle="modal" data-target="#modal-danger"><span class="fa fa-trash"></span> Delete</a></li>
                         </ul>
@@ -179,8 +183,7 @@
               </table>
             </div>
           </div>
-        </div>
-        <!-- /.col -->
+        </div>        <!-- /.col -->
       </div>
     <!-- /.row -->
     </section>
@@ -213,6 +216,16 @@
       }
     },
     methods: {
+      enabledToggle(id, enabled) {
+        let data = {
+          enabled: enabled
+        }
+        axios.post(route('api.users.toggle', id), data)
+          .then(response => {
+            this.getResults(this.page)
+          })
+
+      },
       // Our method to GET results from a Laravel endpoint
       getResults(page) {
         if (typeof page === 'undefined') {

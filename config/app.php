@@ -193,6 +193,7 @@ return [
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         PrettyRoutes\ServiceProvider::class,
         App\Providers\RestauranterServiceProvider::class,
+        Aginev\LoginActivity\LoginActivityServiceProvider::class,
     ],
 
     /*

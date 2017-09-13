@@ -18,7 +18,36 @@ class Restaurant extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'owner_id'];
+    protected $fillable = ['display_name', 'name', 'description', 'owner_id', 'enabled'];
+
+    protected static $logAttributes = ['display_name', 'name', 'description', 'owner_id', 'enabled'];
+
+    protected static $logOnlyDirty = true;
+    /**
+     * Get the message that needs to be logged for the given event name.
+     *
+     * @param string $eventName
+     * @return string
+     */
+    public function getDescriptionForEvent($eventName)
+    {
+        if ($eventName == 'created')
+        {
+            return 'Restaurant #' . $this->id . ' was created';
+        }
+
+        if ($eventName == 'updated')
+        {
+            return 'Restaurant #' . $this->id . ' was updated';
+        }
+
+        if ($eventName == 'deleted')
+        {
+            return 'Restaurant #' . $this->id . ' was deleted';
+        }
+
+        return '';
+    }
 
     /**
      * Creates a new instance of the model.

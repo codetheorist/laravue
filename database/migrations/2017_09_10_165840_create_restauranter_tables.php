@@ -22,6 +22,7 @@ class CreateRestauranterTables extends Migration
         {
             $table->increments( 'id' )->unsigned();
             $table->integer( 'owner_id' )->unsigned()->nullable();
+            $table->boolean( 'enabled' )->unsigned()->default(0);
             $table->string( 'name' );
             $table->string( 'display_name' )->nullable();
             $table->string( 'description' )->nullable();

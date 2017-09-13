@@ -12,9 +12,9 @@
   </div>
 </template>
 <script>
-  import TopBar from './../TopBar.vue'
-  import MiniTopBar from './../MiniTopBar.vue'
-  import Notification from './../Notification.vue'
+  import TopBar from './TopBar.vue'
+  import MiniTopBar from './MiniTopBar.vue'
+  import Notification from './../shared/Notification.vue'
 
   export default {
     name: 'frontend-wrapper',

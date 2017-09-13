@@ -4,16 +4,18 @@ import Store from './store';
 import jwtToken from './helpers/jwt-token';
 Vue.use(VueRouter);
 
-const Dashboard = () => import('./components/Dashboard.vue')
-const Welcome = () => import('./components/Welcome.vue')
-const Login = () => import('./components/Login.vue')
-const Profile = () => import('./components/Profile.vue')
-const RestaurantList = () => import('./components/RestaurantList.vue')
-const UserList = () => import('./components/UserList.vue')
-const Register = () => import('./components/Register.vue')
-const Permissions = () => import('./components/Permissions.vue')
-const AdminWrapper = () => import('./components/admin-wrapper/AdminWrapper.vue')
-const FrontendWrapper = () => import('./components/frontend-wrapper/FrontendWrapper.vue')
+const Dashboard = () => import('./components/admin/Dashboard.vue')
+const Welcome = () => import('./components/frontend/Welcome.vue')
+const Login = () => import('./components/frontend/auth/Login.vue')
+const Profile = () => import('./components/admin/users/Profile.vue')
+const RestaurantList = () => import('./components/admin/restaurants/RestaurantList.vue')
+const RestaurantWrapper = () => import('./components/admin/restaurants/RestaurantWrapper.vue')
+const RestaurantForm = () => import('./components/admin/restaurants/RestaurantForm.vue')
+const UserList = () => import('./components/admin/users/UserList.vue')
+const Register = () => import('./components/frontend/auth/Register.vue')
+const Permissions = () => import('./components/admin/users/Permissions.vue')
+const AdminWrapper = () => import('./components/admin/AdminWrapper.vue')
+const FrontendWrapper = () => import('./components/frontend/FrontendWrapper.vue')
 
 const scrollBehavior = (to, from, savedPosition) => {
   if (savedPosition) {
@@ -78,7 +80,7 @@ const router = new VueRouter({
             children: [
                 {
                     path: '',
-                    name: 'dashboard',
+                    name: 'admin.dashboard',
                     component: Dashboard,
                     meta: {
                         requiresPermission: 'view_admin_dashboard'
@@ -86,7 +88,7 @@ const router = new VueRouter({
                 },
                 {
                     path: 'profile',
-                    name: 'profile',
+                    name: 'admin.profile',
                     component: Profile,
                     meta: {
                         title: 'Profile',
@@ -95,7 +97,7 @@ const router = new VueRouter({
                 },
                 {
                     path: 'user-list',
-                    name: 'user-list',
+                    name: 'admin.user-list',
                     component: UserList,
                     meta: {
                         requiresPermission: 'manage_users'
@@ -103,15 +105,31 @@ const router = new VueRouter({
                 },
                 {
                     path: 'restaurants',
-                    name: 'restaurants',
-                    component: RestaurantList,
-                    meta: {
-                        requiresPermission: 'manage_restaurants'
-                    }
+                    component: RestaurantWrapper,
+                    children: [
+                        {
+                            path: '',
+                            name: 'admin.restaurants',
+                            component: RestaurantList,
+                            meta: {
+                                requiresPermission: 'manage_restaurants'
+                            },
+                        },
+                        {
+                            path: 'edit/:id',
+                            name: 'admin.restaurants.edit',
+                            component: RestaurantForm
+                        },
+                        {
+                            path: 'new',
+                            name: 'admin.restaurants.new',
+                            component: RestaurantForm
+                        }
+                    ]
                 },
                 {
                     path: 'roles',
-                    name: 'roles',
+                    name: 'admin.roles',
                     component: Permissions,
                     meta: {
                         requiresPermission: 'manage_roles'
@@ -119,7 +137,7 @@ const router = new VueRouter({
                 },
                 {
                     path: 'permissions',
-                    name: 'permissions',
+                    name: 'admin.permissions',
                     component: Permissions,
                     meta: {
                         requiresPermission: 'manage_permissions'
@@ -159,7 +177,7 @@ router.beforeEach((to, from, next) => {
 
                 if(user[type + 's'].indexOf(name) === -1) {
                     Store.dispatch('showErrorNotification', 'You don\'t have permission for that.' );
-                    return next({name: 'profile'});
+                    return next({name: 'admin.profile'});
                 }
 
                 return next();
