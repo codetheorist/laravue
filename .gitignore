@@ -13,3 +13,4 @@ yarn-error.log
 /storage/framework/cache/data
 /storage/framework/sessions/*
 /storage/framework/views/*
+/.vscode
