@@ -47,7 +47,6 @@
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-danger">Save</button>
-                    <button type="cancel" @click.prevent="resetAuthUser()" class="btn btn-secondary">Cancel</button>
                   </div>
                 </div>
               </form>
@@ -69,8 +68,9 @@ export default {
   name: 'profile-editor',
   mounted () {
     this.$store.dispatch('setAuthUser');
-    // you don't have to use props like I did with this.model, you could read from a vuex getter
-    console.log('copied info from model prop to local formData')
+  },
+  destroyed () {
+    this.$store.dispatch('setAuthUser');
   },
   computed: {
     first_name: {
