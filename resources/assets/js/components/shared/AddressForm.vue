@@ -1,51 +1,51 @@
 <template>
   <form v-if="street === null" class="form-horizontal">
     <div class="form-group">
-      <label for="finder" class="col-sm-2 control-label">Find Address</label>
+      <label for="finder" class="col-sm-3 control-label">Search</label>
 
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <vue-google-autocomplete :enable-geolocation="true" id="finder" classname="form-control" placeholder="Start typing" v-on:placechanged="getAddressData"></vue-google-autocomplete>
       </div>
     </div>
   </form>
   <form v-else class="form-horizontal" @submit.prevent="saveAddress()">
     <div class="form-group">
-      <label for="street" class="col-sm-2 control-label">Street</label>
+      <label for="street" class="col-sm-3 control-label">Street</label>
 
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <input type="text" name="street" class="form-control" id="street" placeholder="Street" v-model="street">
       </div>
     </div>
     <div class="form-group">
-      <label for="town" class="col-sm-2 control-label">Town</label>
+      <label for="town" class="col-sm-3 control-label">Town</label>
 
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <input type="text" name="town" class="form-control" id="town" placeholder="Town" v-model="town">
       </div>
     </div>
     <div class="form-group">
-      <label for="city" class="col-sm-2 control-label">City</label>
+      <label for="city" class="col-sm-3 control-label">City</label>
 
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <input type="text" name="city" class="form-control" id="city" placeholder="City" v-model="city">
       </div>
     </div>
     <div class="form-group">
-      <label for="country" class="col-sm-2 control-label">Country</label>
+      <label for="country" class="col-sm-3 control-label">Country</label>
 
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <input type="text" name="country" class="form-control" id="country" placeholder="Country" v-model="country">
       </div>
     </div>
     <div class="form-group">
-      <label for="postcode" class="col-sm-2 control-label">Post Code</label>
+      <label for="postcode" class="col-sm-3 control-label">Post Code</label>
 
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <input type="text" name="postcode" class="form-control" id="postcode" placeholder="Post Code" v-model="postcode">
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
+      <div class="col-sm-offset-2 col-sm-9">
         <button type="submit" @click="closeForm()" class="btn btn-danger">Save</button>
         <button type="cancel" @click.prevent="closeForm()"class="btn btn-secondary">Cancel</button>
       </div>

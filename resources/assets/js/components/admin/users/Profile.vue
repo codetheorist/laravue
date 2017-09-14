@@ -43,10 +43,11 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <button class="btn" :class="addressForm === false ? 'btn-primary' : 'btn-secondary'" style="float: right; margin-bottom: 1rem;" @click.prevent="showForm(true)"><i class="fa fa-plus"></i></button>
-                    <div v-if="addressForm !== false" class="address-form">
-                      <address-form @form-saved="formSaved"></address-form>
-
-                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div v-if="addressForm !== false" class="address-form col-lg-12">
+                    <address-form @form-saved="formSaved"></address-form>
                   </div>
                 </div>
                 <div class="row">

@@ -8,6 +8,7 @@ import users from "./modules/users"
 import addresses from "./modules/addresses"
 import restaurants from "./modules/restaurants"
 import statistics from "./modules/statistics"
+import working from "./modules/working"
 Vue.use(Vuex);
 
 const getters = {
@@ -26,7 +27,8 @@ export default new Vuex.Store({
     permissions,
     users,
     restaurants,
-    statistics
+    statistics,
+    working
   },
   strict: true
 });
