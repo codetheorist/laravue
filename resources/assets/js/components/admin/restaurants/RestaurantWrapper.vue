@@ -1,26 +1,18 @@
 <template>
   <div class="">
       <transition name="fade" mode="out-in">
-          <router-view></router-view>
+        <router-view></router-view>
       </transition>
+    </div>
   </div>
-
 </template>
 <script>
   import $ from 'jquery';
-  import { mapState } from 'vuex';
-  // $.AdminLTE = require('admin-lte');
   export default {
     name: 'restaurant-wrapper',
     mounted () {
       $(document).ready(function() {
-        console.log('Ready');
         $.AdminLTE.layout.activate();
-      })
-    },
-    computed: {
-      ...mapState({
-          user: state => state.auth.user
       })
     },
     methods: {
