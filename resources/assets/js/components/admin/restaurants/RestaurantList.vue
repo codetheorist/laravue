@@ -112,7 +112,6 @@
   </div>
 </template>
 <script>
-  import {mapState} from 'vuex'
   import FooTable from 'footable'
   const RestaurantDeleter = () => import('./RestaurantDeleter.vue')
   export default {
