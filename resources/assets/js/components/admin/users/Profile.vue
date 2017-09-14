@@ -50,8 +50,8 @@
                     <address-form @form-saved="formSaved"></address-form>
                   </div>
                 </div>
-                <div class="row">
-                  <div v-if="user.adresses !== []" v-for="(address, index) in user.addresses" class="col-sm-6 col-lg-4">
+                <div v-if="user.adresses !== []" class="row">
+                  <div v-for="(address, index) in user.addresses" class="col-sm-6 col-lg-4" :key="index">
                     <div class="box box-primary">
                       <div class="box-header with-border">
                         <h3 class="box-title">{{ address.street }}</h3>
