@@ -10,6 +10,7 @@ const Login = () => import('./components/frontend/auth/Login.vue')
 const Profile = () => import('./components/admin/users/Profile.vue')
 const RestaurantList = () => import('./components/admin/restaurants/RestaurantList.vue')
 const RestaurantWrapper = () => import('./components/admin/restaurants/RestaurantWrapper.vue')
+const RestaurantSettingsWrapper = () => import('./components/admin/restaurants/RestaurantSettingsWrapper.vue')
 const RestaurantForm = () => import('./components/admin/restaurants/RestaurantForm.vue')
 const UserList = () => import('./components/admin/users/UserList.vue')
 const Register = () => import('./components/frontend/auth/Register.vue')
@@ -116,14 +117,20 @@ const router = new VueRouter({
                             },
                         },
                         {
-                            path: 'edit/:id',
-                            name: 'admin.restaurants.edit',
-                            component: RestaurantForm
-                        },
-                        {
                             path: 'new',
                             name: 'admin.restaurants.new',
                             component: RestaurantForm
+                        },
+                        {
+                            path: ':id',
+                            component: RestaurantSettingsWrapper,
+                            children: [
+                                {
+                                    path: 'edit',
+                                    name: 'admin.restaurants.edit',
+                                    component: RestaurantForm
+                                }
+                            ]
                         }
                     ]
                 },
