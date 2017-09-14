@@ -84,7 +84,8 @@ const router = new VueRouter({
                     name: 'admin.dashboard',
                     component: Dashboard,
                     meta: {
-                        requiresPermission: 'view_admin_dashboard'
+                        requiresPermission: 'view_admin_dashboard',
+                        requiresAuth: true
                     }
                 },
                 {
@@ -101,35 +102,49 @@ const router = new VueRouter({
                     name: 'admin.user-list',
                     component: UserList,
                     meta: {
-                        requiresPermission: 'manage_users'
+                        requiresPermission: 'manage_users',
+                        requiresAuth: true
                     }
                 },
                 {
                     path: 'restaurants',
                     component: RestaurantWrapper,
+                    meta: {
+                        requiresAuth: true
+                    },
                     children: [
                         {
                             path: '',
                             name: 'admin.restaurants',
                             component: RestaurantList,
                             meta: {
-                                requiresPermission: 'manage_restaurants'
+                                requiresPermission: 'manage_restaurants',
+                                requiresAuth: true
                             },
                         },
                         {
                             path: 'new',
                             name: 'admin.restaurants.new',
-                            component: RestaurantForm
+                            component: RestaurantForm,
+                            meta: {
+                                requiresAuth: true
+                            },
                         },
                         {
                             path: ':id',
                             component: RestaurantSettingsWrapper,
+                            meta: {
+                                requiresAuth: true
+                            },
                             children: [
                                 {
                                     path: 'edit',
                                     name: 'admin.restaurants.edit',
-                                    component: RestaurantForm
-                                }
+                                    component: RestaurantForm,
+                                    meta: {
+                                        requiresAuth: true
+                                    }
+                                },
                             ]
                         }
                     ]
@@ -139,7 +154,8 @@ const router = new VueRouter({
                     name: 'admin.roles',
                     component: Permissions,
                     meta: {
-                        requiresPermission: 'manage_roles'
+                        requiresPermission: 'manage_roles',
+                        requiresAuth: true
                     }
                 },
                 {
@@ -147,7 +163,8 @@ const router = new VueRouter({
                     name: 'admin.permissions',
                     component: Permissions,
                     meta: {
-                        requiresPermission: 'manage_permissions'
+                        requiresPermission: 'manage_permissions',
+                        requiresAuth: true
                     }
                 }
 
