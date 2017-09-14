@@ -148,7 +148,7 @@ const router = new VueRouter({
                             component: RestaurantForm,
                             meta: {
                                 requiresAuth: true
-                            },
+                            }
                         },
                         {
                             path: ':id',

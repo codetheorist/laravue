@@ -17,6 +17,7 @@
     </ol>
   </section>
 
+  <section class="content container-fluid">
     <div class="row">
       <div :class="this.$route.params && this.$route.params.id ? 'col-md-9' : 'col-md-12'">
         <transition name="fade" mode="out-in">
@@ -28,7 +29,9 @@
         <restaurant-sidebar></restaurant-sidebar>
       </div>
     </div>
+  </section>
   </div>
+
 </template>
 <script>
 import $ from 'jquery';
