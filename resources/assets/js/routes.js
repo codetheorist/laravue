@@ -2,12 +2,17 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Store from './store';
 import jwtToken from './helpers/jwt-token';
+
 Vue.use(VueRouter);
 
+const AddressForm = () => import('./components/shared/AddressForm.vue')
 const Dashboard = () => import('./components/admin/Dashboard.vue')
 const Welcome = () => import('./components/frontend/Welcome.vue')
 const Login = () => import('./components/frontend/auth/Login.vue')
-const Profile = () => import('./components/admin/users/Profile.vue')
+const Profile = () => import('./components/admin/profile/Profile.vue')
+const ProfileAddresses = () => import('./components/admin/profile/ProfileAddresses.vue')
+const ProfileEditor = () => import('./components/admin/profile/ProfileEditor.vue')
+const ProfileSettingsWrapper = () => import('./components/admin/profile/ProfileSettingsWrapper.vue')
 const RestaurantList = () => import('./components/admin/restaurants/RestaurantList.vue')
 const RestaurantWrapper = () => import('./components/admin/restaurants/RestaurantWrapper.vue')
 const RestaurantSettingsWrapper = () => import('./components/admin/restaurants/RestaurantSettingsWrapper.vue')
@@ -90,12 +95,27 @@ const router = new VueRouter({
                 },
                 {
                     path: 'profile',
-                    name: 'admin.profile',
-                    component: Profile,
-                    meta: {
-                        title: 'Profile',
-                        requiresAuth: true
-                    }
+                    component: ProfileSettingsWrapper,
+                    children: [
+                        {
+                            path: '',
+                            name: 'admin.profile',
+                            component: ProfileEditor,
+                            meta: {
+                                title: 'Edit Profile',
+                                requiresAuth: true
+                            }
+                        },
+                        {
+                            path: 'addresses',
+                            name: 'admin.profile.addresses',
+                            component: ProfileAddresses,
+                            meta: {
+                                title: 'Edit Addresses',
+                                requiresAuth: true
+                            }
+                        }
+                    ]
                 },
                 {
                     path: 'user-list',
