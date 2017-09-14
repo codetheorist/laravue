@@ -25,13 +25,14 @@
 
       </div>
       <div v-if="this.$route.params && this.$route.params.id" class="col-md-3 col-md-pull-9">
+        <restaurant-sidebar></restaurant-sidebar>
       </div>
     </div>
   </div>
 </template>
 <script>
 import $ from 'jquery';
-import { mapState } from 'vuex';
+const RestaurantSidebar = () => import('./RestaurantSidebar.vue')
 // $.AdminLTE = require('admin-lte');
 export default {
   name: 'restaurant-settings-wrapper',
@@ -40,6 +41,9 @@ export default {
       console.log('Ready');
       $.AdminLTE.layout.activate();
     })
+  },
+  components: {
+    RestaurantSidebar
   },
   methods: {
   }
