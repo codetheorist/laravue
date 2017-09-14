@@ -1,17 +1,20 @@
 <template>
   <div>
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Restaurants
-        <small>Administer restaurants on the system.</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-        <li class="active">Restaurants</li>
-      </ol>
-      <restaurant-editor v-if="isEditing === true" @close-modal="closeModal"></restaurant-editor>
-    </section>
+
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Restaurants
+      <small>Administer restaurants on the system.</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <a href="#">
+          <i class="fa fa-dashboard"></i> Admin</a>
+      </li>
+      <li class="active">Restaurants</li>
+    </ol>
+  </section>
 
     <!-- Main content -->
     <section class="content container-fluid">
@@ -47,7 +50,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="restaurant in data.data" :class="restaurant.enabled !== 1 ? 'danger' : 'success'">
+                  <tr v-for="(restaurant, index) in data.data" :class="restaurant.enabled !== 1 ? 'danger' : 'success'" :key="index">
                     <td data-head="Display Name">{{ restaurant.display_name }}</td>
                     <td data-head="Slug">{{ restaurant.name }}</td>
                     <td data-head="Status">{{ restaurant.display_name }}</td>
@@ -58,7 +61,7 @@
                           <span class="fa fa-caret-down"></span>
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a href="#" @click="modalMode('edit', restaurant.id)"><span class="fa fa-pencil"></span> Edit</a></li>
+                          <li><a href="#" @click="openEditor(restaurant.id)"><span class="fa fa-gears"></span> Settings</a></li>
                           <li><a href="#" @click="enabledToggle(restaurant.id, restaurant.enabled ? 0 : 1)">
                             <span :class="['fa', restaurant.enabled !== 1 ? 'fa-check' : 'fa-close']"></span>
                             <span v-text="restaurant.enabled !== 1 ? 'Enable' : 'Disable'">
@@ -68,7 +71,6 @@
                           <li><a href="#" @click="modalMode('delete', restaurant.id)"><span class="fa fa-trash"></span> Delete</a></li>
                         </ul>
                       </span>
-                      <restaurant-editor @close-modal="closeModal" v-if="isEditing === restaurant.id" :restaurant="restaurant" class="restaurant-editor"></restaurant-editor>
                       <restaurant-deleter @close-modal="closeModal" v-if="isDeleting === restaurant.id" :restaurant="restaurant" class="restaurant-deleter"></restaurant-deleter>
                       <div class="modal modal-danger fade" id="modal-danger" style="display: none;">
                         <div class="modal-dialog">
@@ -112,7 +114,6 @@
 <script>
   import {mapState} from 'vuex'
   import FooTable from 'footable'
-  const RestaurantEditor = () => import('./RestaurantEditor.vue')
   const RestaurantDeleter = () => import('./RestaurantDeleter.vue')
   export default {
     name: 'restaurant-list',
@@ -121,7 +122,6 @@
       this.getResults();
     },
     components: {
-      RestaurantEditor,
       RestaurantDeleter
     },
     data () {
@@ -131,7 +131,6 @@
         page: 1,
         data: {},
         busy: false,
-        isEditing: false,
         isDeleting: false
       }
     },
@@ -141,6 +140,9 @@
       }
     },
     methods: {
+      openEditor(id) {
+        this.$router.push({ name: 'admin.restaurants.edit', params: { id: id }})
+      },
       enabledToggle(id, enabled) {
         let data = {
           enabled: enabled
@@ -151,10 +153,7 @@
           })
       },
       closeModal(mode) {
-        if (mode === 'edit') {
-          this.isEditing = false
-          this.getResults()
-        } else if (mode === 'delete') {
+        if (mode === 'delete') {
           this.isDeleting = false
           this.getResults()
         }
@@ -175,16 +174,7 @@
       modalMode: function(mode, id) {
         if (mode === 'delete') {
           this.deleteMode(id)
-        } else if (mode === 'edit') {
-          this.editorMode(id)
         }
-      },
-      editorMode: function(value) {
-        // If the editor is not already open for the selected category, open it
-        // if (this.isEditing != value) {
-        //   this.isEditing = value
-        // }
-        this.$router.push({ name: 'admin.restaurants.edit', params: { id: value }})
       },
       deleteMode: function(value) {
         // If the editor is not already open for the selected category, open it
