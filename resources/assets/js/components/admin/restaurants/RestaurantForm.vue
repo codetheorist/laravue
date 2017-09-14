@@ -1,24 +1,12 @@
 <template>
   <div id="restaurant-form">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Restaurants
-        <small>Administer restaurants on the system.</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-        <li>Restaurants</li>
-        <li class="active" v-text="id !== null ? 'Edit Restaurant' : 'New Restaurant'"></li>
-      </ol>
-    </section>
     <!-- Main content -->
     <section class="content container-fluid">
       <div class="row">
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title" v-text="id !== null ? 'Edit Restaurant' : 'New Restaurant'"></h3>
+              <h3 class="box-title" v-text="id !== null ? 'General Settings' : 'New Restaurant'"></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
