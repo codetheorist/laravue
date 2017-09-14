@@ -14,17 +14,21 @@
       </ol>
     </section>
 
-    <div class="row">
-      <div :class="'col-md-9 col-md-push-3'">
-        <transition name="fade" mode="out-in">
-          <router-view></router-view>
-        </transition>
+    <!-- Main content -->
+    <section class="content container-fluid">
 
+      <div class="row">
+        <div :class="'col-md-9'">
+          <transition name="fade" mode="out-in">
+            <router-view></router-view>
+          </transition>
+
+        </div>
+        <div class="col-md-3">
+          <profile-sidebar></profile-sidebar>
+        </div>
       </div>
-      <div class="col-md-3 col-md-pull-9">
-        <profile-sidebar></profile-sidebar>
-      </div>
-    </div>
+    </section>
   </div>
 
 </template>

@@ -1,7 +1,4 @@
 <template>
-
-  <!-- Main content -->
-  <section class="content container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="box">
@@ -61,8 +58,6 @@
       <!-- /.col -->
     </div>
     <!-- /.row -->
-  </section>
-
 </template>
 <script>
 import {mapState} from 'vuex'

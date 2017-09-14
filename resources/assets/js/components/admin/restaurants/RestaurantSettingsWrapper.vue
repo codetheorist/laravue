@@ -18,13 +18,13 @@
   </section>
 
     <div class="row">
-      <div :class="this.$route.params && this.$route.params.id ? 'col-md-9 col-md-push-3' : 'col-md-12'">
+      <div :class="this.$route.params && this.$route.params.id ? 'col-md-9' : 'col-md-12'">
         <transition name="fade" mode="out-in">
           <router-view></router-view>
         </transition>
 
       </div>
-      <div v-if="this.$route.params && this.$route.params.id" class="col-md-3 col-md-pull-9">
+      <div v-if="this.$route.params && this.$route.params.id" class="col-md-3">
         <restaurant-sidebar></restaurant-sidebar>
       </div>
     </div>
