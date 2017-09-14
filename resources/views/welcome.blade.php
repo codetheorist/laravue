@@ -9,6 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Takeaway Town') }}</title>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD1HRHyMjIogjxDuJ_OG9eMctiyURL3IU&libraries=places"></script>
 
         <script>
             window.Laravel = {!! json_encode([
@@ -16,13 +17,12 @@
                 'csrfToken' => csrf_token(),
                 'siteName'  => config('app.name'),
                 'apiDomain' => config('app.url').'/api',
-                'css' => mix('css/app.css'),
                 'frontpage' => true
             ]) !!}
         </script>
         <!-- Styles -->
         <!-- Styles -->
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/all.css') }}" rel="stylesheet">
         <style>
             .flex-center.position-ref.full-height {
                 background-color: #fff;
@@ -69,7 +69,8 @@
 
         </style>
     </head>
-    <body>
+    <body class="hold-transition skin-blue sidebar-mini">
+        @routes
         <div id="app" class="front">
             <div class="flex-center position-ref full-height">
                 @if (Route::has('login'))

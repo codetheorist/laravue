@@ -7,7 +7,90 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/ionicons/dist/scss/ionicons.scss";
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+@import "~admin-lte/dist/css/AdminLTE.css";
+@import "~admin-lte/dist/css/skins/skin-blue.min.css";
 
 body > div > .container {
     padding: 1.25rem;
+}
+
+// More practical CSS...
+// using mobile first method (IE8,7 requires respond.js polyfill https://github.com/scottjehl/Respond)
+
+$breakpoint-alpha: $screen-sm; // adjust to your needs
+
+.rwd-table {
+  margin: 1rem auto;
+  table-layout: fixed;
+  // width: 90%;
+  box-shadow: 0 0 2px rgba(0,0,0,.4);
+  border-collapse: collapse;
+  @media only screen and (max-width:$breakpoint-alpha) {
+    table-layout: fixed;
+    // width: 98%;
+  }
+  thead {
+    @media only screen and (max-width:$breakpoint-alpha) {
+      display: none;
+    }
+    th {
+      background: #3C8DBC;
+      color: #fff;
+      font-weight: 400;
+      padding: .7rem 0;
+      border: 1px solid #fff;
+      font-size: 1.5rem;
+      font-variant: small-caps;
+      //width: 22%;
+      &:first-child {
+        //width: 8%;
+        border-left: none;
+      }
+      &:last-child {
+        //width: 8%;
+        border-right: none;
+      }
+      // &:nth-child(even) {
+      //   background: rgba(17,149,178,.2);
+      // }
+    }
+  }
+  tr {
+    @media only screen and (max-width:$breakpoint-alpha) {
+      border-bottom: 2px solid rgba(17,149,178,.35);
+      &:last-child {
+        border-bottom: 0 none;
+      }
+    }
+    td {
+      padding: .5rem 1rem;
+      border-right: 1px solid rgba(0,0,0,.05);
+      &:last-child {
+        border-right: 0 none;
+        width: 135px;
+      }
+      @media only screen and (max-width:$breakpoint-alpha) {
+        display: block;
+        padding: .3rem .5rem;
+        &:before {
+          content: attr(data-head);
+          display: inline-block;
+          width: auto;
+          min-width: 25%;
+          font-weight: 900;
+          padding-right: 1rem;
+          font-variant: small-caps;
+        }
+        &:last-child {
+          text-align: left;
+          width: auto;
+        }
+        &:nth-child(odd) {
+          background: rgba(17,149,178,.15);
+        }
+      }
+    }
+  }
 }

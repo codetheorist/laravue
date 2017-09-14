@@ -1,4 +1,5 @@
 /node_modules
+/bower_components
 /public/**/*
 /storage/*.key
 /vendor
@@ -12,3 +13,4 @@ yarn-error.log
 /storage/framework/cache/data
 /storage/framework/sessions/*
 /storage/framework/views/*
+/.vscode

@@ -1,0 +1,10 @@
+{
+    "type": "separate",
+    "autoloader": true,
+    "route": "/sketchpad/",
+    "controllers": "sketchpad/controllers/",
+    "views": "sketchpad/views/",
+    "assets": "sketchpad/assets/",
+    "namespace": "sketchpad\\",
+    "basedir": "sketchpad/"
+}

@@ -1,4 +1,3 @@
-import * as api from './../../config';
 import jwtToken from './../../helpers/jwt-token';
 import * as types from './../../mutation-types';
 
@@ -38,8 +37,7 @@ export default {
     actions: {
         registerRequest: ({dispatch}, formData) => {
             return new Promise((resolve, reject) => {
-                console.log(formData)
-                axios.post(api.register, formData)
+                axios.post(route('api.users.register'), formData)
                     .then(response => {
                         console.log(response.data.token)
                         dispatch('registerSuccess', response.data);

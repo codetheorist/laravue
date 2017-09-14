@@ -1,0 +1,50 @@
+{
+    "route": "/sketchpad/",
+    "paths": {
+        "controllers": [
+            {
+                "name": "app",
+                "path": "app/Http/Controllers",
+                "enabled": false
+            },
+            {
+                "name": "sketchpad",
+                "path": "sketchpad/controllers",
+                "enabled": true
+            },
+            {
+                "name": "help/demo",
+                "path": "vendor/davestewart/sketchpad/src/help/demo",
+                "enabled": true
+            },
+            {
+                "name": "help/docs",
+                "path": "vendor/davestewart/sketchpad/src/help/docs",
+                "enabled": true
+            }
+        ],
+        "views": "sketchpad/views/",
+        "assets": "sketchpad/assets/"
+    },
+    "site": {
+        "name": "Sketchpad",
+        "home": "welcome",
+        "help": "help",
+        "views": "",
+        "search": true,
+        "favourites": true
+    },
+    "livereload": {
+        "preset": "",
+        "host": "",
+        "usePolling": false,
+        "paths": []
+    },
+    "ui": {
+        "humanizeText": true,
+        "showComments": true,
+        "showArchived": true,
+        "formatCode": true,
+        "scrollTop": true
+    }
+}

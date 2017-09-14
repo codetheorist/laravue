@@ -1,4 +1,3 @@
-import * as api from './../../config';
 import jwtToken from './../../helpers/jwt-token';
 import * as types from './../../mutation-types';
 import Store from './../index';
@@ -21,7 +20,7 @@ export default {
     actions: {
         loginRequest: ({dispatch}, formData) => {
             return new Promise((resolve, reject) => {
-                axios.post(api.login, formData)
+                axios.post(route('api.sessions.create'), formData)
                     .then(response => {
                         dispatch('loginSuccess', response.data);
                         resolve();

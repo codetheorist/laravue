@@ -69,6 +69,12 @@ class PermissionsTableSeeder extends Seeder
                 'category' => 'users'
             ],
             [
+                'name' => 'manage_users',
+                'display_name' => 'Manage Users',
+                'description' => 'Manage Users',
+                'category' => 'users'
+            ],
+            [
                 'name' => 'manage_roles',
                 'display_name' => 'Manage Roles',
                 'description' => 'Manage Roles',
@@ -127,6 +133,36 @@ class PermissionsTableSeeder extends Seeder
                 'display_name' => 'Delete Permissions',
                 'description' => 'Delete Permissions',
                 'category' => 'permissions'
+            ],
+            [
+                'name' => 'manage_restaurants',
+                'display_name' => 'Manage Permissions',
+                'description' => 'Manage Permissions',
+                'category' => 'restaurants'
+            ],
+            [
+                'name' => 'add_restaurants',
+                'display_name' => 'Add Permissions',
+                'description' => 'Add Permissions',
+                'category' => 'restaurants'
+            ],
+            [
+                'name' => 'view_restaurants',
+                'display_name' => 'View Permissions',
+                'description' => 'View Permissions',
+                'category' => 'restaurants'
+            ],
+            [
+                'name' => 'edit_restaurants',
+                'display_name' => 'Edit Permissions',
+                'description' => 'Edit Permissions',
+                'category' => 'restaurants'
+            ],
+            [
+                'name' => 'delete_restaurants',
+                'display_name' => 'Delete Restaurants',
+                'description' => 'Delete Restaurants',
+                'category' => 'restaurants'
             ],
         );
 

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+
     /**
      * The application's global HTTP middleware stack.
      *
@@ -37,7 +38,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:60,1',
+            'throttle:500,1',
             'bindings',
         ],
     ];
@@ -61,5 +62,7 @@ class Kernel extends HttpKernel
         'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
         'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'teamowner' => \Mpociot\Teamwork\Middleware\TeamOwner::class,
+        'restaurantowner' => \App\Middleware\RestaurantOwner::class,
     ];
 }

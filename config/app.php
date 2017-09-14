@@ -13,7 +13,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'google_maps' => env('GOOGLE_MAPS', ''),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -178,6 +178,22 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Tightenco\Ziggy\ZiggyServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Mpociot\Teamwork\TeamworkServiceProvider::class,
+        Tylercd100\LERN\LERNServiceProvider::class,
+        EricMakesStuff\ServerMonitor\ServerMonitorServiceProvider::class,
+        Laracademy\Generators\GeneratorsServiceProvider::class,
+        AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
+        Clarkeash\Doorman\Providers\DoormanServiceProvider::class,
+        Spatie\Analytics\AnalyticsServiceProvider::class,
+        Spatie\UptimeMonitor\UptimeMonitorServiceProvider::class,
+        Brotzka\DotenvEditor\DotenvEditorServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+        PrettyRoutes\ServiceProvider::class,
+        App\Providers\RestauranterServiceProvider::class,
+        Aginev\LoginActivity\LoginActivityServiceProvider::class,
     ],
 
     /*
@@ -192,7 +208,8 @@ return [
     */
 
     'aliases' => [
-
+        'Activity' => Spatie\Activitylog\ActivitylogFacade::class,
+        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -200,10 +217,13 @@ return [
         'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'Config' => Illuminate\Support\Facades\Config::class,
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
         'DB' => Illuminate\Support\Facades\DB::class,
+        'Doorman' => Clarkeash\Doorman\Facades\Doorman::class,
+        'DotenvEditor' => Brotzka\DotenvEditor\DotenvEditorFacade::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
@@ -213,6 +233,7 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
+        "LERN" => Tylercd100\LERN\Facades\LERN::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
