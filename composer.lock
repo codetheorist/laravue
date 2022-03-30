@@ -1024,12 +1024,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "EricMakesStuff\\ServerMonitor\\": "src/"
-                },
                 "files": [
                     "src/Helpers/functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "EricMakesStuff\\ServerMonitor\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1054,20 +1054,24 @@
         },
         {
             "name": "erusev/parsedown",
-            "version": "1.6.3",
+            "version": "1.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "728952b90a333b5c6f77f06ea9422b94b585878d"
+                "reference": "cb17b6477dfff935958ba01325f2e8a2bfa6dab3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/728952b90a333b5c6f77f06ea9422b94b585878d",
-                "reference": "728952b90a333b5c6f77f06ea9422b94b585878d",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/cb17b6477dfff935958ba01325f2e8a2bfa6dab3",
+                "reference": "cb17b6477dfff935958ba01325f2e8a2bfa6dab3",
                 "shasum": ""
             },
             "require": {
+                "ext-mbstring": "*",
                 "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -1092,7 +1096,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2017-05-14T14:47:48+00:00"
+            "time": "2019-12-30T22:54:17+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -1364,12 +1368,12 @@
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "src/"
-                ],
                 "psr-4": {
                     "Google\\Auth\\": "src"
-                }
+                },
+                "classmap": [
+                    "src/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1529,12 +1533,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Promise\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Promise\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1584,12 +1588,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1956,12 +1960,12 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Laracasts\\Flash": "src/"
-                },
                 "files": [
                     "src/Laracasts/Flash/functions.php"
-                ]
+                ],
+                "psr-0": {
+                    "Laracasts\\Flash": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2273,12 +2277,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Collective\\Html\\": "src/"
-                },
                 "files": [
                     "src/helpers.php"
-                ]
+                ],
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2942,12 +2946,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Oriceon\\Settings\\": "src/"
-                },
                 "files": [
                     "src/helpers.php"
-                ]
+                ],
+                "psr-4": {
+                    "Oriceon\\Settings\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3153,6 +3157,7 @@
                 "utf-8",
                 "utf8"
             ],
+            "abandoned": "symfony/polyfill-mbstring or symfony/string",
             "time": "2016-05-18T13:57:10+00:00"
         },
         {
@@ -3806,6 +3811,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2017-08-20T05:47:52+00:00"
         },
         {
@@ -3989,12 +3995,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "PragmaRX\\Countries\\": "src/"
-                },
                 "files": [
                     "src/Support/helpers.php"
-                ]
+                ],
+                "psr-4": {
+                    "PragmaRX\\Countries\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4409,6 +4415,16 @@
                 "identifier",
                 "uuid"
             ],
+            "funding": [
+                {
+                    "url": "https://github.com/ramsey",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/ramsey/uuid",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2017-08-04T13:39:04+00:00"
         },
         {
@@ -4438,12 +4454,12 @@
                 }
             },
             "autoload": {
-                "classmap": [
-                    "src/controllers"
-                ],
                 "psr-0": {
                     "Rap2hpoutre\\LaravelLogViewer\\": "src/"
-                }
+                },
+                "classmap": [
+                    "src/controllers"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5060,12 +5076,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Spatie\\Activitylog\\": "src"
-                },
                 "files": [
                     "src/helpers.php"
-                ]
+                ],
+                "psr-4": {
+                    "Spatie\\Activitylog\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5300,12 +5316,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Spatie\\SslCertificate\\": "src"
-                },
                 "files": [
                     "src/helpers.php"
-                ]
+                ],
+                "psr-4": {
+                    "Spatie\\SslCertificate\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5480,6 +5496,7 @@
                 "mail",
                 "mailer"
             ],
+            "abandoned": "symfony/mailer",
             "time": "2017-05-20T06:20:27+00:00"
         },
         {
@@ -5956,12 +5973,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Mbstring\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6027,12 +6044,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php56\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php56\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6087,12 +6104,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php70\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php70\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -6547,12 +6564,12 @@
             "version": "v0.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tightenco/ziggy.git",
+                "url": "https://github.com/tighten/ziggy.git",
                 "reference": "88ceae070d5af218379ac22489d72afc846c489f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/88ceae070d5af218379ac22489d72afc846c489f",
+                "url": "https://api.github.com/repos/tighten/ziggy/zipball/88ceae070d5af218379ac22489d72afc846c489f",
                 "reference": "88ceae070d5af218379ac22489d72afc846c489f",
                 "shasum": ""
             },
@@ -6581,12 +6598,12 @@
             ],
             "authors": [
                 {
-                    "name": "Matt Stauffer",
-                    "email": "matt@tighten.co"
-                },
-                {
                     "name": "Daniel Coulbourne",
                     "email": "daniel@tighten.co"
+                },
+                {
+                    "name": "Matt Stauffer",
+                    "email": "matt@tighten.co"
                 }
             ],
             "description": "Generates a Blade directive exporting all of your named Laravel routes. Also provides a nice route() helper function in JavaScript.",
@@ -6979,12 +6996,12 @@
             "version": "1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "2db61e59ff05fe5126d152bd0655c9ea113e550f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/2db61e59ff05fe5126d152bd0655c9ea113e550f",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/2db61e59ff05fe5126d152bd0655c9ea113e550f",
                 "reference": "2db61e59ff05fe5126d152bd0655c9ea113e550f",
                 "shasum": ""
             },
@@ -7052,12 +7069,12 @@
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "src/commands"
-                ],
                 "psr-4": {
                     "Zizaco\\Entrust\\": "src/Entrust/"
-                }
+                },
+                "classmap": [
+                    "src/commands"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -7203,6 +7220,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2017-08-15T16:48:10+00:00"
         },
         {
@@ -7233,11 +7251,11 @@
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "hamcrest"
-                ],
                 "files": [
                     "hamcrest/Hamcrest.php"
+                ],
+                "classmap": [
+                    "hamcrest"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
